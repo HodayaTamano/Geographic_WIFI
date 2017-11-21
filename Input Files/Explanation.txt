@@ -1,0 +1,4 @@
+In this folder you will find input files to try the code out with.
+The files are records from Wigle wifi phone app, turned into csv files.
+
+Hodaya&Shir
