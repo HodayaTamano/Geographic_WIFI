@@ -16,7 +16,7 @@ public class Csv {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String path ="C:/Users/hodaya/Downloads/WigleWifi_20171030201415.csv";
+		String path ="C:/Users/hodaya/Desktop/data"; //change path here <-
 		ArrayList<Row> data_csv = pass_to_table(path);
 		for (int i=0; i<data_csv.size(); i++){
 			//Row r = data_csv.get(i);
@@ -38,7 +38,6 @@ public class Csv {
 		for (File file : files){
 			if (file.isFile()){
 				String str = file.getAbsolutePath();
-				//System.out.println(str);
 				if (str.endsWith(".csv"))
 					results.add(file.getName());
 			}
@@ -201,7 +200,7 @@ public class Csv {
  * @param table - the file we want to print, row format
  */
 	//WRITE
-	public static void pass_to_file(ArrayList <Row> table){
+	private static void pass_to_file(ArrayList <Row> table){
 		BufferedWriter bw = null;
 		PrintWriter pw = null;
 		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
@@ -209,7 +208,8 @@ public class Csv {
 			Fields = Fields+"SSID"+i+", Mac"+i+", Frequency"+i+", Signal"+i+",";
 		}
 		try{
-			FileWriter fw = new FileWriter("C:\\Users\\hodaya\\Wigle.csv", false);
+			//C:/Users/hodaya/Desktop/data
+			FileWriter fw = new FileWriter("C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv", false); //path to write file <--
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
 			pw.println(Fields);

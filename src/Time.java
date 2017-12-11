@@ -36,10 +36,9 @@ public class Time {
 	public boolean setDATE(String str) 
 	{
 		try{
-			this.DATE = this.MyFormatTime.parse(str);			
+			this.DATE = this.MyFormatTime.parse(str);
 			return true;
 		}catch(ParseException e){
 			return false;}
 	}
-
 }
