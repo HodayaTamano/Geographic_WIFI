@@ -69,9 +69,6 @@ public class Wifi_Scan extends Wifi{
 	public static void setC(Csv c) {
 		Wifi_Scan.c = c;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

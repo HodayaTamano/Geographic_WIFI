@@ -1,7 +1,14 @@
+package Tests;
+
+import Wifi_Data.*;
+import Algorithms.*;
+import General.*;
 import static org.junit.Assert.*;
 import java.io.File;
 import java.util.ArrayList;
 import org.junit.Test;
+
+import General.Csv;
 
 /**
  * This class tests Csv class.
