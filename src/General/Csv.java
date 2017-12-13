@@ -1,5 +1,13 @@
+package General;
+import Tests.*;
+import Wifi_Data.*;
+import Algorithms.*;
 
 import java.util.*;
+
+import Wifi_Data.Row;
+import Wifi_Data.Wifi;
+
 import java.io.*;
 
 
@@ -115,11 +123,15 @@ public class Csv {
 						}catch(NumberFormatException e){
 							continue;
 						}
+						//creating an object of Wifi_scan with the data we already have
+						Wifi_Scan myscan = new Wifi_Scan(w, r.getLat(), r.getLon(), r.getAlt());
+						//adding this Wifi_Scan to all_scans in Wifi_Scans class
+						
 						//if data_csv is empty, insert row without checking if the data already exists in table
 						if (data_csv.size()==0)
 						{
-							r.wifi.add(w);
-							r.setWifi_count(r.wifi.size());
+							r.getWifi().add(w);
+							r.setWifi_count(r.getWifi().size());
 							data_csv.add(r);
 						} 
 						else{		//here we check if data already exists in table
@@ -153,7 +165,7 @@ public class Csv {
 											break;
 										}	
 										for (int k=0; k<wifi_list.size(); k++)
-											if (wifi_list.get(k).signal<w.signal)
+											if (wifi_list.get(k).getSignal()<w.getSignal())
 											{
 												wifi_list.remove(k);
 												wifi_list.add(w);
@@ -168,8 +180,8 @@ public class Csv {
 							}		//if we get till here it means that this is a new wifi in a new row and we add new row to data_csv
 							if (flag_insert==0)
 							{
-								r.wifi.add(w);
-								r.setWifi_count(r.wifi.size());
+								r.getWifi().add(w);
+								r.setWifi_count(r.getWifi().size());
 								data_csv.add(r);
 							}
 						}
