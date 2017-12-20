@@ -1,3 +1,4 @@
+package Tests;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
@@ -5,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
+
+import General.Time;
 /**
  * This function tests the original function by sending the String received to the original function through a Time object,
  * and parsing it manually to the format wanted. If they are not equal - the test will fail.

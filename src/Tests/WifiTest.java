@@ -1,6 +1,13 @@
+package Tests;
+import Tests.*;
+
+import Algorithms.*;
+import General.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Wifi_Data.Wifi;
 
 /**
  * test_wifi - This class tests the meaningful function in Wifi object class.
@@ -17,9 +24,9 @@ public class WifiTest {
 	@Test
 	public void testEqualsTo() {
 		Wifi w = new Wifi();
-		w.ssid = "a";
+		w.setSsid("a");
 		Wifi j = new Wifi();
-		j.ssid = "c";
+		j.setSsid("c");
 		if (j.equalsTo(w))
 			fail();
 	}

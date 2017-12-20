@@ -1,7 +1,9 @@
+package Wifi_Data;
 
-import java.util.ArrayList;
-import java.util.Date;
-
+import Tests.*;
+import Algorithms.*;
+import General.*;
+import java.util.*;
 
 /**
  * This class defines a Row object, its fields and some functions needed to work properly with this class throughout our project.
@@ -121,5 +123,15 @@ public class Row {
 	for(int i=0;i<wifi.size();i++)
 		str+=wifi.get(i).toString();
 	return str;
+	}
+	public static void sortingBySignal(ArrayList<Wifi> scans_byMac) {
+
+		Collections.sort(scans_byMac,  new Comparator<Wifi>() {
+			@Override
+			public int compare(Wifi w1, Wifi w2) {
+				return Integer.compare(w1.getSignal(),w2.getSignal());
+			}
+		});
+		//return scans_byMac;
 	}
 }

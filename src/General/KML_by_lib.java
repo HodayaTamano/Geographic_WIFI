@@ -1,19 +1,11 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+package General;
 
-import de.micromata.opengis.kml.v_2_2_0.Document;
-import de.micromata.opengis.kml.v_2_2_0.Folder;
-import de.micromata.opengis.kml.v_2_2_0.Icon;
-import de.micromata.opengis.kml.v_2_2_0.Kml;
-import de.micromata.opengis.kml.v_2_2_0.Placemark;
-import de.micromata.opengis.kml.v_2_2_0.Style;
-
+import Tests.*;
+import Wifi_Data.*;
+import Algorithms.*;
+import java.io.*;
+import java.util.*;
+import de.micromata.opengis.kml.v_2_2_0.*;
 
 /**
  * This example generates a KML file with a placemark and a chart for each continent. The chart is generated with the Google Chart API and
@@ -215,7 +207,7 @@ public class KML_by_lib {
 		// create Placemark elements
 		//here we insert the points in a for-loop
 		for (int j=0; j<table.size(); j++){
-			for (int i=0; i<table.get(j).wifi_count; i++){
+			for (int i=0; i<table.get(j).getWifi_count(); i++){
 				try{
 					createPlacemarkWithChart(doc, folder, table.get(j).getLon(), table.get(j).getLat(),
 							table.get(j).getTimeString(), table.get(j).getWifi().get(i));
@@ -284,7 +276,7 @@ public class KML_by_lib {
 							}catch(NumberFormatException e){
 								continue;
 							}
-							for (int i=0; i<r.wifi_count; i++){
+							for (int i=0; i<r.getWifi_count(); i++){
 								try{
 								Wifi tmpw=new Wifi();
 								tmpw.setSsid(readline[6+i*4]);

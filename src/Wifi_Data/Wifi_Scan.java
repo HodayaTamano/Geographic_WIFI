@@ -1,12 +1,7 @@
 package Wifi_Data;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
+import java.io.*;
+import java.util.*;
 import Tests.*;
 import Algorithms.*;
 import General.*;
@@ -62,6 +57,16 @@ public class Wifi_Scan extends Wifi{
 	}
 	public void setAlt(double alt) {
 		this.alt = alt;
+	}
+	public Wifi getWifi(Wifi_Scan ws) {
+		return ws.w;
+	}
+	
+	public void setWifi(Wifi w) {
+		this.w.frequency = w.frequency;
+		this.w.signal = w.signal;
+		this.w.ssid = w.ssid;
+		this.w.mac = w.mac;
 	}
 	public static Csv getC() {
 		return c;

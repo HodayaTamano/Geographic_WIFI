@@ -1,12 +1,13 @@
 package Algorithms;
 
-import java.util.ArrayList;
-
-import Wifi_Data.Wifi_Scan;
+import java.util.*;
+import Wifi_Data.*;
+import Tests.*;
+import General.*;
 
 public class Algorithm1 {
 
-	public static double [] Location (ArrayList<Wifi_Scan> scansByNum){
+	public static double [] ap_location (ArrayList<Wifi_Scan> scansByNum){
 		double [] w_sum = new double [3];//loc
 		//loc[0] - lat, loc[1] - lon, loc[2] - alt
 		//loc[0]=scansByNum.

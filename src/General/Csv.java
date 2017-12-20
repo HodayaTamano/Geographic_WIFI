@@ -1,15 +1,10 @@
 package General;
+
 import Tests.*;
 import Wifi_Data.*;
 import Algorithms.*;
-
 import java.util.*;
-
-import Wifi_Data.Row;
-import Wifi_Data.Wifi;
-
 import java.io.*;
-
 
 /**
  * This class passes a collection of .csv files from a folder to a united csv file that holds the information as a table
@@ -52,21 +47,21 @@ public class Csv {
 		}
 		return results;
 	}
-/**
- * This functions passes on all csv files in a folder (after sending to {@link filenames}). First it checks if the file itself is legal.
- * Every file is read, one row at a time (every row passes a legality check that it is a wifi network and not empty).
- * Every row from each file is inserted to an array and splitted by commas (as the csv definition indicates).
- * Temporary Row and Wifi objects hold the data while it is checked, and if it is new and legal it is inserted to the data_csv file.
- * @param path - receives a path of a folder in the computer.
- * @return data_csv - data_csv in returned, each row in file is a Row object.
- */
+	/**
+	 * This functions passes on all csv files in a folder (after sending to {@link filenames}). First it checks if the file itself is legal.
+	 * Every file is read, one row at a time (every row passes a legality check that it is a wifi network and not empty).
+	 * Every row from each file is inserted to an array and splitted by commas (as the csv definition indicates).
+	 * Temporary Row and Wifi objects hold the data while it is checked, and if it is new and legal it is inserted to the data_csv file.
+	 * @param path - receives a path of a folder in the computer.
+	 * @return data_csv - data_csv in returned, each row in file is a Row object.
+	 */
 	//"C:/Users/hodaya/Downloads/WigleWifi_20171030201415.csv"
 	public static ArrayList<Row> pass_to_table(String path){
 
 		ArrayList<String> results = filenames(path);
 		ArrayList<Row> data_csv = new ArrayList<Row>();
 		BufferedReader br=null;
-		
+
 		//goes through files in folder
 		for (int i=0; i<results.size(); i++){ 
 			File file = new File(path+"/"+results.get(i)); 		//concats path and filename
@@ -84,7 +79,7 @@ public class Csv {
 						System.out.println("goodbye");
 						continue ;
 					}					
-					
+
 					//this part checks if row is legal
 					id = readline[5];
 					try{
@@ -126,7 +121,7 @@ public class Csv {
 						//creating an object of Wifi_scan with the data we already have
 						Wifi_Scan myscan = new Wifi_Scan(w, r.getLat(), r.getLon(), r.getAlt());
 						//adding this Wifi_Scan to all_scans in Wifi_Scans class
-						
+						Wifi_Scans.add_wifiScan(myscan);
 						//if data_csv is empty, insert row without checking if the data already exists in table
 						if (data_csv.size()==0)
 						{
@@ -134,15 +129,15 @@ public class Csv {
 							r.setWifi_count(r.getWifi().size());
 							data_csv.add(r);
 						} 
-						else{		//here we check if data already exists in table
+						else{//here we check if data already exists in table
 							int flag_insert=0;
 							for(int j=0;j<data_csv.size();j++)
-							{				//checks if row matching to row object data already exists in data_csv
+							{//checks if row matching to row object data already exists in data_csv
 								Row cur = data_csv.get(j);
 								if (cur.getTimeString().equals(r.getTimeString()) && 
-									cur.getId().equals(r.getId()) && cur.getAlt()==r.getAlt()
-									&& cur.getLat()==r.getLat() && cur.getLon()==r.getLon())
-								{          //if row exists we go through the wifi list to check if wifi data already exists
+										cur.getId().equals(r.getId()) && cur.getAlt()==r.getAlt()
+										&& cur.getLat()==r.getLat() && cur.getLon()==r.getLon())
+								{//if row exists we go through the wifi list to check if wifi data already exists
 									ArrayList<Wifi> wifi_list = cur.getWifi();
 									boolean wifi_exists = false;
 									for (int k=0; k<wifi_list.size(); k++)
@@ -153,27 +148,26 @@ public class Csv {
 											break;
 										}
 									} //if wifi doesn't exist and the list is smaller than 10 wifi objects we insert the new wifi object
-									  //if wifi doesn't exist and the list is full (10 objects in list) we switch with a weaker wifi (if there is)
+									//if wifi doesn't exist and the list is full (10 objects in list) we switch with a weaker wifi (if there is)
 									if (!wifi_exists)
 									{
 										if (wifi_list.size()<10)
 										{
 											wifi_list.add(w);
+											Row.sortingBySignal(wifi_list);
 											flag_insert=1;
 											data_csv.get(j).setWifi(wifi_list);
 											data_csv.get(j).setWifi_count(wifi_list.size());
 											break;
 										}	
-										for (int k=0; k<wifi_list.size(); k++)
-											if (wifi_list.get(k).getSignal()<w.getSignal())
-											{
-												wifi_list.remove(k);
+										else{//remove lowest signal from list
+											Row.sortingBySignal(wifi_list);
+											if (w.getSignal()>wifi_list.get(wifi_list.size()-1).getSignal()){
+												wifi_list.remove(wifi_list.size()-1);
 												wifi_list.add(w);
-												flag_insert=1;
-												data_csv.get(j).setWifi(wifi_list);
-												data_csv.get(j).setWifi_count(wifi_list.size());
-												break;
 											}
+											Row.sortingBySignal(wifi_list);
+										}
 									}
 									break;
 								}
@@ -206,11 +200,11 @@ public class Csv {
 		}
 		return data_csv;
 	}
-/**
- *This function passes through all the rows in the file, that has the same format as Row object and prints the data with commas in between 
- *the fields as a csv file. 
- * @param table - the file we want to print, row format
- */
+	/**
+	 *This function passes through all the rows in the file, that has the same format as Row object and prints the data with commas in between 
+	 *the fields as a csv file. 
+	 * @param table - the file we want to print, row format
+	 */
 	//WRITE
 	private static void pass_to_file(ArrayList <Row> table){
 		BufferedWriter bw = null;
@@ -232,11 +226,11 @@ public class Csv {
 			pw.close();
 		}catch(Exception e){
 			System.out.println("Couldn't write rows to table!");
-			
+
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 }

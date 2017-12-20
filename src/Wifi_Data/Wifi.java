@@ -1,3 +1,8 @@
+package Wifi_Data;
+
+import Tests.*;
+import Algorithms.*;
+import General.*;
 
 /**
  * This class defines a Wifi object, its fields and some functions needed to work properly with this class throughout our project.

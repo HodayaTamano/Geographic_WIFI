@@ -1,6 +1,12 @@
+package Tests;
+import Wifi_Data.*;
+import Algorithms.*;
+import General.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Wifi_Data.Row;
 /**
  * test_row - This class tests the meaningful function in Row object class.
  * If any of them does not work properly, a fail notice will be thrown.
@@ -15,7 +21,7 @@ public class RowTest {
 	@Test
 	public void testRow() {
 		Row r= new Row();
-		if (r.id!="" || r.lat!=0 || r.lon!=0 || r.alt!=0 || r.wifi_count!=0 || r.wifi.size()!=0)
+		if (r.getId()!="" || r.getLat()!=0 || r.getLon()!=0 || r.getAlt()!=0 || r.getWifi_count()!=0 || r.getWifi().size()!=0)
 			fail();
 	}	
 /**
