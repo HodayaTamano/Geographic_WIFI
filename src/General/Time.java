@@ -27,13 +27,16 @@ public class Time {
 		this.MyFormatTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		this.DATE = new Date();
 	}
+	
 	public Date getDateDATE() { //returns time&date at date format
 		return DATE;
 	}
+	
 	public String getStringDATE() {//returns time&date as String
 		String str=MyFormatTime.format(DATE);
 		return str;
 	}
+	
 	public boolean setDATE(String str) 
 	{
 		try{

@@ -14,13 +14,14 @@ import Wifi_Data.Wifi;
  * If any of them does not work properly, a fail notice will be thrown.
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
+ * @version 21.12.2017
  */
 public class WifiTest {
 
-/**
- * Test_equalsTo - This function tests the equals_to function in Wifi object class.
- * It checks if the function returns true for two different Wifi objects.
- */
+	/**
+	 * Test_equalsTo - This function tests the equals_to function in Wifi object class.
+	 * It checks if the function returns true for two different Wifi objects.
+ 	*/
 	@Test
 	public void testEqualsTo() {
 		Wifi w = new Wifi();

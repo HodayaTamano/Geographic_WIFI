@@ -5,19 +5,32 @@ import Wifi_Data.*;
 import Tests.*;
 import General.*;
 
+/**
+ * This class defines the Wifi_Samples object which is used to hold samples of scans for an access point for the
+ * use of Algorithm 2 in this package. It holds an arraylist of Wifi objects, location variables and pi representing 
+ * the 'weight' of the sample - it's resemblance to the input sample given by the user. 
+ * (Locates samples that include one or more of the mac's that are given by the user.)
+ * @author Hodaya_Tamano
+ * @author Shir_Bentabou
+ * @version 21.12.2017
+ */
+
 public class Wifi_Samples {
 	double pi;
 	ArrayList<Wifi> samples;
 	double lat;
 	double lon;
-	int alt; //as in row object
+	double alt; //as in row object
 
+	/**Empty Constructor
+	 * This constructor creates a new Wifi_Sample object with all it's values zeroed.
+	 */
 	public Wifi_Samples(){ 
 		pi = 0;
 		samples = new ArrayList<Wifi>();
-		alt = 0;
 		lat = 0;
 		lon = 0;
+		alt = 0;
 	}
 	public double getPi() {
 		return pi;
@@ -46,7 +59,7 @@ public class Wifi_Samples {
 	public double getAlt() {
 		return alt;
 	}
-	public void setAlt(int alt) {
+	public void setAlt(double alt) {
 		this.alt = alt;
 	}
 	
@@ -54,12 +67,35 @@ public class Wifi_Samples {
 		this.samples.add(w);
 		
 	}
-	
-	public Wifi_Samples(double lat, double lon, int alt){ //constructor that receives lat lon alt data
+	/**
+	 * This constructor receives location data only and inserts the values to a new Wifi_Samples object.
+	 * All the other values are zeroed.
+	 * @param lat
+	 * @param lon
+	 * @param alt
+	 */
+	public Wifi_Samples(double lat, double lon, double alt){ //constructor that receives lat lon alt data
 		this.pi = 0;
 		this.alt = alt;
 		this.lat = lat;
 		this.lon = lon;
 		this.samples = new ArrayList<Wifi>();
 	}
+	
+	/**
+	 *  This function sorts an array list of Wifi_Samples by pi field, that represents the resemblance of a 
+	 *  sample to the input sample given.
+	 * @param samples
+	 */
+	public static void sortingByPi(ArrayList<Wifi_Samples> samples) {
+
+		Collections.sort(samples,  new Comparator<Wifi_Samples>() {
+			@Override
+			public int compare(Wifi_Samples ws1, Wifi_Samples ws2) {
+				return Double.compare(ws1.getPi(),ws2.getPi());
+			}
+		});
+		
+	}
 }
+

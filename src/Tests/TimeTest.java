@@ -8,14 +8,18 @@ import java.util.Date;
 import org.junit.Test;
 
 import General.Time;
+
 /**
- * This function tests the original function by sending the String received to the original function through a Time object,
- * and parsing it manually to the format wanted. If they are not equal - the test will fail.
+ * This class tests meaningful function in Time class.
  * @author Hodaya_Tamano
- * @author Shir_B
+ * @author Shir_Bentabou
+ * @version 21.12.2017
  */
 public class TimeTest {
-
+	 /**
+	  * This function tests the original function by sending the String received to the original function through a Time object,
+	  * and parsing it manually to the format wanted. If they are not equal - the test will fail.
+	  */
 	@Test
 	public void testTime() {
 		Time t = new Time();

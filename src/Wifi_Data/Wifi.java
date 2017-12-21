@@ -8,13 +8,13 @@ import General.*;
  * This class defines a Wifi object, its fields and some functions needed to work properly with this class throughout our project.
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
- * @version 1.0.0 - 9.11.17
+ * @version 21.12.2017
  */
 
 public class Wifi {
 	String ssid; //network name
 	String mac;
-	int signal; //RSSI - the higher the better
+	double signal; //RSSI - the higher the better
 	int frequency; //channel
 
 	/**
@@ -23,8 +23,8 @@ public class Wifi {
 	 * public void setSsid(String ssid) - This function sets the ssid as the String received.
 	 * public String getMac() - This function gets the mac field as String.
 	 * public void setMac(String mac) - This function sets the mac as the String received.
-	 * public int getSignal() - This function gets the signal field as int.
-	 * public void setSignal(int signal) - This function sets the signal as the int received.
+	 * public double getSignal() - This function gets the signal field as double.
+	 * public void setSignal(double signal) - This function sets the signal as the double received.
 	 * public int getFrequency() - This function gets the frequency field as int.
 	 * public void setFrequency - This function sets the frequency as the int received.
 	 */
@@ -58,12 +58,12 @@ public class Wifi {
 	}
 
 
-	public int getSignal() {
+	public double getSignal() {
 		return signal;
 	}
 
 
-	public void setSignal(int signal) {
+	public void setSignal(double signal) {
 		
 		this.signal = signal;
 	}

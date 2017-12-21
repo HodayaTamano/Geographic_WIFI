@@ -11,7 +11,7 @@ import java.io.*;
  * with time, phone id, geographic data and all data collected about wifi's in a location.
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
- * @version 1.0.0 - 9.11.17
+ * @version 21.12.2017
  */
 
 public class Csv {
@@ -19,13 +19,13 @@ public class Csv {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String path ="C:/Users/hodaya/Desktop/data"; //change path here <-
+		String path ="C:/Users/hodaya/Desktop/algo/boazevel"; //change path here <-
 		ArrayList<Row> data_csv = pass_to_table(path);
 		for (int i=0; i<data_csv.size(); i++){
 			//Row r = data_csv.get(i);
 			System.out.println(data_csv.get(i).toString());
 		}
-		pass_to_file(data_csv);
+		pass_to_file(data_csv, "C:/Users/hodaya/Desktop/algo/boazevel/csv.csv");
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Csv {
 
 		//goes through files in folder
 		for (int i=0; i<results.size(); i++){ 
-			File file = new File(path+"/"+results.get(i)); 		//concats path and filename
+			File file = new File(path+"/"+results.get(i));		//concats path and filename
 			String line = ""; 									//differentiates between rows
 			String csvSplitBy = ","; 							//differentiates between fields
 			try{
@@ -72,14 +72,13 @@ public class Csv {
 				String[] readline;								 //stores row from file
 				String first_line = br.readLine(); 
 				String id = "";									 //relevant to the whole file
-				if (first_line != null){
+				if (first_line != null){						//if first line is not empty
 					readline = first_line.split(csvSplitBy);
-					if (readline.length!=8)
+					if (readline.length!=8)						//first line length is not 8
 					{
-						System.out.println("goodbye");
+						System.out.println("goodbye");			//file is not in the right format
 						continue ;
 					}					
-
 					//this part checks if row is legal
 					id = readline[5];
 					try{
@@ -91,9 +90,9 @@ public class Csv {
 				}
 				line = br.readLine(); 			//jumping the contents row
 
-				if (line==null || line.split(csvSplitBy).length!=11)
+				if (line==null || line.split(csvSplitBy).length!=11)	//if content row is not 11 fields
 				{
-					System.out.println("goodbye");
+					System.out.println("goodbye");						//file is not in the right format
 					continue;
 				}
 				//this part checks if line is legal
@@ -200,13 +199,99 @@ public class Csv {
 		}
 		return data_csv;
 	}
+
+	/**This function receives a string that represents a path to a csv file of Row objects, and returns the data
+	 * in the csv file as an arraylist of Row objects. 
+	 * @param path
+	 * @return arraylist of Row objects
+	 */
+	public static ArrayList<Row> csv_to_file(String path){
+		ArrayList<Row> csv_file = new ArrayList<Row>();
+		BufferedReader br = null;
+		File file = new File(path);		
+		String line = ""; 									//differentiates between rows
+		String csvSplitBy = ","; 							//differentiates between fields
+		try{
+			br = new BufferedReader(new FileReader(file));
+			String[] readline;								 //stores row from file
+			String first_line = br.readLine(); 
+			if (first_line != null){						//if first line is not empty
+				readline = first_line.split(csvSplitBy);
+				if (readline.length<6)						//if first line content is smaller than 6
+				{
+					System.out.println("goodbye");			//file is not in the right format
+				}					
+				//this part checks if row is legal
+			}
+
+			//this part checks if line is legal
+			while ((line = br.readLine())!= null)
+			{ 
+				//inserting row data to new row object
+				readline = line.split(csvSplitBy); //inserting row to array
+				if (readline.length<=1){
+					break;
+				}
+				Row r = new Row();
+				r.setTime(readline[0]);
+				r.setId(readline[1]);
+
+				//checks if the values inserted are in the right format
+				try{
+					r.setWifi_count(Integer.parseInt(readline[5]));
+					System.out.println("wifi count");
+					r.setLat(Double.parseDouble(readline[2]));
+					System.out.println("lat");
+					r.setLon(Double.parseDouble(readline[3]));
+					System.out.println("lon");
+					r.setAlt(Double.parseDouble(readline[4]));
+					System.out.println("alt");
+
+				}catch(NumberFormatException e){ //problem is here
+					continue;
+				}
+				int index=0;
+				ArrayList<Wifi> wifi_list = new ArrayList<Wifi>();
+				
+				for (int i=0; i<r.getWifi_count(); i++){
+					Wifi w = new Wifi();
+					w.setSsid(readline[6%4+index]);
+					w.setMac(readline[7%4+index]);
+					w.setFrequency(Integer.parseInt(readline[8%4+index]));
+					w.setSignal(Double.parseDouble(readline[9%4+index]));
+					index+=5;
+					wifi_list.add(w);
+				}
+				r.setWifi(wifi_list);
+				System.out.println(r.toString());
+				csv_file.add(r);
+			}
+			//exceptions
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally{
+			if( br !=null)
+			{
+				try{
+					br.close();
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+		return csv_file;
+	}
+
 	/**
 	 *This function passes through all the rows in the file, that has the same format as Row object and prints the data with commas in between 
 	 *the fields as a csv file. 
 	 * @param table - the file we want to print, row format
 	 */
 	//WRITE
-	private static void pass_to_file(ArrayList <Row> table){
+	public static void pass_to_file(ArrayList <Row> table, String path){
 		BufferedWriter bw = null;
 		PrintWriter pw = null;
 		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
@@ -215,7 +300,9 @@ public class Csv {
 		}
 		try{
 			//C:/Users/hodaya/Desktop/data
-			FileWriter fw = new FileWriter("C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv", false); //path to write file <--
+			//"C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv" - before we changed the function to receive path as well
+			//the path obove was inserted in the right place above in the first function that sends to this one
+			FileWriter fw = new FileWriter(path, false); //path to write file <--
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
 			pw.println(Fields);
@@ -226,11 +313,6 @@ public class Csv {
 			pw.close();
 		}catch(Exception e){
 			System.out.println("Couldn't write rows to table!");
-
 		}
-
 	}
-
-
-
 }

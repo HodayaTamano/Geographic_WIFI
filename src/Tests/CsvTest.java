@@ -12,7 +12,9 @@ import General.Csv;
 
 /**
  * This class tests Csv class.
- * 
+ * @author Hodaya_Tamano
+ * @author Shir_Bentabou
+ * @version 21.12.2017
  */
 public class CsvTest {
 	

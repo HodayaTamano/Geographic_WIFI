@@ -8,10 +8,9 @@ import java.util.*;
 import de.micromata.opengis.kml.v_2_2_0.*;
 
 /**
- * This example generates a KML file with a placemark and a chart for each continent. The chart is generated with the Google Chart API and
- * show the area (surface of the earth) of each continent.
- * 
- * Google Chart API example: http://chart.apis.google.com/chart?cht=p3&chd=t:60,40&chs=250x100&chl=Hello|World
+ * This class generates a KML file with a placemark for each wifi point with the strongest signal (max_signal).
+ * The file is filtered by the information that is received as an input by the user: ID, Location or Time.
+ * The outcome is a KML file with the wifi points and a Timeline that we can see using Google Earth.
  */
 public class KML_by_lib {
 	static ArrayList<Wifi> max_signal = new ArrayList<Wifi>();
@@ -219,18 +218,17 @@ public class KML_by_lib {
 		// print and save
 		kml.marshal(new File("general_kml.kml")); //writes to project folder in workspace <--
 	}
-/**
- * This function uses the JAK library and formats wifi networks to be represented as points in a map,
- *  by the kml format.
- * @param document
- * @param folder
- * @param lon
- * @param lat
- * @param time
- * @param w
- */
-
-
+	
+	/**
+	 * This function uses the JAK library and formats wifi networks to be represented as points in a map,
+	 *  by the kml format.
+	 * @param document
+	 * @param folder
+	 * @param lon
+	 * @param lat
+	 * @param time
+	 * @param w
+	 */
 	private static void createPlacemarkWithChart(Document document, Folder folder,double lon,double lat,String time, Wifi w) {
 		
 		Placemark placemark = folder.createAndAddPlacemark();
