@@ -239,31 +239,25 @@ public class Csv {
 				//checks if the values inserted are in the right format
 				try{
 					r.setWifi_count(Integer.parseInt(readline[5]));
-					System.out.println("wifi count");
 					r.setLat(Double.parseDouble(readline[2]));
-					System.out.println("lat");
 					r.setLon(Double.parseDouble(readline[3]));
-					System.out.println("lon");
 					r.setAlt(Double.parseDouble(readline[4]));
-					System.out.println("alt");
 
-				}catch(NumberFormatException e){ //problem is here
+				}catch(NumberFormatException e){ 
 					continue;
 				}
-				int index=0;
+				
 				ArrayList<Wifi> wifi_list = new ArrayList<Wifi>();
 				
 				for (int i=0; i<r.getWifi_count(); i++){
 					Wifi w = new Wifi();
-					w.setSsid(readline[6%4+index]);
-					w.setMac(readline[7%4+index]);
-					w.setFrequency(Integer.parseInt(readline[8%4+index]));
-					w.setSignal(Double.parseDouble(readline[9%4+index]));
-					index+=5;
+					w.setSsid(readline[6+i*4]);
+					w.setMac(readline[7+i*4]);
+					w.setFrequency(Integer.parseInt(readline[8+i*4]));
+					w.setSignal(Double.parseDouble(readline[9+i*4]));
 					wifi_list.add(w);
 				}
 				r.setWifi(wifi_list);
-				System.out.println(r.toString());
 				csv_file.add(r);
 			}
 			//exceptions
