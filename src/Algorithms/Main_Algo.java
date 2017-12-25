@@ -59,10 +59,6 @@ public class Main_Algo {
 				input_missing = scan.next();
 				output2 = scan.next();
 				num_samples2 = Integer.parseInt(scan.next());
-				System.out.println("full = "+full_input);
-				System.out.println("missing = "+input_missing);
-				System.out.println("output = "+output2);
-				System.out.println("num_samples2 = "+num_samples2);
 				//preparing data structure received as answer from execution of algorithm 2
 				ArrayList<Row> algo2 = new ArrayList<Row>();
 				//data structures to hold arraylists of Row objects (the data in the csv files)
