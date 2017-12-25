@@ -22,7 +22,7 @@ public class Algorithm2 {
 	final static int min_diff = 3;
 	static int no_signal = -120; 
 	final static int diff_no_sig = 100; 
-	final static int num_of_samples = 3; //to find location we need at least 3 measurements
+	final static int num_of_samples = 4; //to find location we need at least 3 measurements
 
 	/**
 	 * 
@@ -77,11 +77,12 @@ public class Algorithm2 {
 
 		for (int i=0; i<ws.size(); i++){//throughout the samples
 			double pi=1;
-			for (int j=0; j<ws.get(i).getSamples().size(); i++){//throughout the wifi sample arraylist
+			for (int j=0; j<ws.get(i).getSamples().size(); j++){//throughout the wifi sample arraylist
 
-				for (int k=0; j<original.getWifi().size(); i++){//throughout the original wifi arraylist
+				for (int k=0; k<original.getWifi().size(); k++){//throughout the original wifi arraylist
 					double diff=0;
 					if (ws.get(i).getSamples().get(j).getMac().equals(original.getWifi().get(k).getMac())){
+						diff+=3;
 						if (ws.get(i).getSamples().get(j).getSignal() == no_signal){
 							ws.get(i).getSamples().get(j).setSignal(diff_no_sig);
 						}else{
