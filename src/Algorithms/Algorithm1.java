@@ -34,7 +34,7 @@ public class Algorithm1 {
 		w_sum[0] = w_sum[0]/sumofweight;
 		w_sum[1] = w_sum[1]/sumofweight;
 		w_sum[2] = w_sum[2]/sumofweight;
-		System.out.println(Arrays.toString(w_sum));
+		//System.out.println(Arrays.toString(w_sum));
 		return w_sum;
 	}
 

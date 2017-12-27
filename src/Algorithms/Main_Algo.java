@@ -76,7 +76,7 @@ public class Main_Algo {
 				algo2 = (Algorithm2.locations_csv(missing_location, full_csv));
 				//printing to file function for a full-csv arraylist of Row objects
 				Csv.pass_to_file(algo2, output2);
-				Csv.pass_to_file(full_csv, "C:\\Users\\hodaya\\Desktop\\algo\\try.csv");
+				//Csv.pass_to_file(full_csv, "C:\\Users\\hodaya\\Desktop\\algo\\try.csv");
 				
 				break;
 		}

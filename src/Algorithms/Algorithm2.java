@@ -79,7 +79,7 @@ public class Algorithm2 {
 	}
 
 	/**
- 	* This function calculates the user's location by an arraylist of samples and a row from the mising loc. info fole.
+ 	* This function calculates the user's location by an arraylist of samples and a row from the mising loc. info file.
  	* Returns the location info as an array of 3 doubles.
  	* @param ws
  	* @param original
