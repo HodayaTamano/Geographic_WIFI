@@ -10,7 +10,7 @@ import General.*;
 * This object has three more fields - that represent location coordinates for a wifi scanned.
 * @author Hodaya_Tamano
 * @author Shir_Bentabou
-* @version 21.12.2017
+* @version 27.12.2017
 */
 
 public class Wifi_Scan extends Wifi{

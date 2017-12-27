@@ -8,7 +8,7 @@ import java.util.*;
 /** This class defines the Wifi_Scans object, which is an array list of Wifi_Scan objects.
 * @author Hodaya_Tamano
 * @author Shir_Bentabou
-* @version 21.12.2017
+* @version 27.12.2017
 */
 
 

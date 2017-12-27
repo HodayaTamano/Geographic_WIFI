@@ -8,7 +8,7 @@ import General.*;
 /** This class is responsible for calculating the access point approximated location, given an arraylist of scans of the access point.
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
- * @version 21.12.2017
+ * @version 27.12.2017
  */
 
 public class Algorithm1 {
@@ -60,6 +60,12 @@ public class Algorithm1 {
 		return w_sum;
 	}
 
+	/**
+	 * This function receives a full csv file and searches every mac to calculate the access's point location
+	 * by scans in the csv file.
+	 * @param full_csv
+	 * @return
+	 */
 	public static Wifi_Scans findMacScans(ArrayList<Row> full_csv){
 
 		Wifi_Scans ws = new Wifi_Scans();
@@ -73,6 +79,7 @@ public class Algorithm1 {
 				w = current.getWifi().get(j);
 				String mac = w.getMac();
 				boolean exists = false;
+				//if first row - add scan
 				if(ws.getSize() == 0){
 					Wifi_Scan scan = new Wifi_Scan();
 					scan.setWifi(w);
@@ -85,6 +92,7 @@ public class Algorithm1 {
 					scan.setAlt(loc[2]);
 					ws.add_wifiScan(scan);
 				}else{
+					//if not first row - search the file that will be returned to see if the mac already exists
 					for (int k=0; k<ws.getSize(); k++){ //passing through list to see if we already have this mac
 						if (mac.equals(ws.get_scan(k).getWifi().getMac()))
 							exists=true;

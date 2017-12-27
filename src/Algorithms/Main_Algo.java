@@ -19,7 +19,7 @@ import java.util.Scanner;
  * AT THIS STAGE ALGORITHM2 IS IMPLEMENTED WITHOUT 'num of samples'
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
- *
+ * @version 27.12.2017
  */
 public class Main_Algo {
 

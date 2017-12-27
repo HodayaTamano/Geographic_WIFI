@@ -10,7 +10,7 @@ import General.*;
  * This class is responsible for calculating user location, given the wifi scan that the user inputs.
  * @author Hodaya_Tamano
  * @author Shir_Bentabou
- * @version 21.12.2017
+ * @version 27.12.2017
  */
 
 
