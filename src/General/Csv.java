@@ -120,7 +120,8 @@ public class Csv {
 						//creating an object of Wifi_scan with the data we already have
 						Wifi_Scan myscan = new Wifi_Scan(w, r.getLat(), r.getLon(), r.getAlt());
 						//adding this Wifi_Scan to all_scans in Wifi_Scans class
-						Wifi_Scans.add_wifiScan(myscan);
+						Wifi_Scans all_scans = new Wifi_Scans();
+						all_scans.add_wifiScan(myscan);
 						//if data_csv is empty, insert row without checking if the data already exists in table
 						if (data_csv.size()==0)
 						{
@@ -288,10 +289,10 @@ public class Csv {
 	public static void pass_to_file(ArrayList <Row> table, String path){
 		BufferedWriter bw = null;
 		PrintWriter pw = null;
-		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
-		for (int i=1; i<11; i++){
-			Fields = Fields+"SSID"+i+", Mac"+i+", Frequency"+i+", Signal"+i+",";
-		}
+//		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
+//		for (int i=1; i<11; i++){
+//			Fields = Fields+"SSID"+i+", Mac"+i+", Frequency"+i+", Signal"+i+",";
+//		}
 		try{
 			//C:/Users/hodaya/Desktop/data
 			//"C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv" - before we changed the function to receive path as well
@@ -299,7 +300,7 @@ public class Csv {
 			FileWriter fw = new FileWriter(path, false); //path to write file <--
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-			pw.println(Fields);
+//			pw.println(Fields);
 			for (int j=0; j<table.size(); j++){
 				pw.println(table.get(j).toString());
 			}

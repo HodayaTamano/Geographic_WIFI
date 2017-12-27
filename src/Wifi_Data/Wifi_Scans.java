@@ -1,5 +1,8 @@
 package Wifi_Data;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.*;
 
 /** This class defines the Wifi_Scans object, which is an array list of Wifi_Scan objects.
@@ -10,16 +13,26 @@ import java.util.*;
 
 
 public class Wifi_Scans {
-	static ArrayList<Wifi_Scan> all_scans = new ArrayList<Wifi_Scan>();
-
-	public static Wifi_Scan get_scan(int i) {
-		return all_scans.get(i);
+	ArrayList<Wifi_Scan> all_scans;
+	
+	public Wifi_Scans (){
+		this.all_scans = new ArrayList<Wifi_Scan>();
 	}
 
-	public static boolean add_wifiScan(Wifi_Scan w) {
-		return all_scans.add(w);
+	public Wifi_Scan get_scan(int i) {
+		return this.all_scans.get(i);
+	}
+
+	public boolean add_wifiScan(Wifi_Scan w) {
+		return this.all_scans.add(w);
 	}
 	
+	/**
+	 * This function returns the size of Wifi_Scans.
+	 */
+	public int getSize(){
+		return this.all_scans.size();
+	}
 	/**
 	 * This function removes the unnecessary scan from a Wifi_Scans list after it was sorted by 'pi' value 
 	 * (measures resemblance)to the number of samples wanted bu the users input.
@@ -27,14 +40,16 @@ public class Wifi_Scans {
 	 * @param num - number of samples wanted
 	 * @return ArrayList of num rows of Wifi_Scan objects
 	 */
-	public static ArrayList<Wifi_Scan> numOfPoints(String mac, int num) {
+	public static ArrayList<Wifi_Scan> numOfPoints(ArrayList<Row> full_csv, String mac, int num) {
 		ArrayList<Wifi_Scan> scansByNum = new ArrayList<Wifi_Scan>();
-		scansByNum = getAllScans_byMac(mac);
-		//if (scansByNum.size() < num)
-		//num<=0
-		for (int i=num; i<scansByNum.size(); i++)
-			scansByNum.remove(i);
-		
+		scansByNum = getAllScans_byMac(full_csv, mac);
+		if (scansByNum.size() < num){
+			System.out.println("Not Enough Scans!");
+		}
+		else{
+			for (int i=num; i<scansByNum.size(); i++)
+				scansByNum.remove(i);
+		}
 		return scansByNum;
 	}
 	
@@ -43,15 +58,21 @@ public class Wifi_Scans {
 	 * @param mac
 	 * @return ArrayList of all Wifi_Scan objects that match the mac given
 	 */
-	public static ArrayList<Wifi_Scan> getAllScans_byMac(String mac) {
+	public static ArrayList<Wifi_Scan> getAllScans_byMac(ArrayList<Row> full_csv, String mac) {
 		ArrayList<Wifi_Scan> scans_byMac = new ArrayList<Wifi_Scan>();
-		for (int i=0; i<all_scans.size(); i++){
-			if (all_scans.get(i).getMac().equals(mac)){
-				scans_byMac.add(all_scans.get(i));
+		
+		for (int i=0; i<full_csv.size(); i++){//pass throughout the rows in full csv
+			Row current = new Row();
+			current = full_csv.get(i);
+			for (int j=0; j<current.getWifi_count(); j++){ //passing through the wifi's in a row
+				Wifi w = new Wifi();
+				w = current.getWifi().get(j);
+				if (mac.equals(w.getMac())){ //if wifi was found insert to all scans by the same mac table(array list)
+					Wifi_Scan myscan = new Wifi_Scan(w, current.getLat(), current.getLon(), current.getAlt());
+					scans_byMac.add(myscan);
+				}
 			}
 		}
-
-		sortingBySignal(scans_byMac);
 		return scans_byMac;
 	}
 	
@@ -70,6 +91,30 @@ public class Wifi_Scans {
 		});
 		return scans_byMac;
 	}
-
 	
+	/**
+	 * This function passes a Wifi_Scan object to an external file in the path given.
+	 * @param wss
+	 * @param path
+	 */
+	public static void print_Scans(Wifi_Scans wss, String path){
+		BufferedWriter bw = null;
+		PrintWriter pw = null;
+
+		try{
+			FileWriter fw = new FileWriter(path, false); //path to write file <--
+			bw = new BufferedWriter(fw);
+			pw = new PrintWriter(bw);
+			for (int j=0; j<wss.getSize(); j++){
+				pw.println(wss.get_scan(j).toString());
+				//System.out.println(wss.get_scan(j).toString());
+			}
+			pw.flush();
+			pw.close();
+		}catch(Exception e){
+			System.out.println("Couldn't write rows to table!");
+		}
+	}
+
+
 }

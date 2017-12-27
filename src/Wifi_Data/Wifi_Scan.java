@@ -75,8 +75,9 @@ public class Wifi_Scan extends Wifi{
 	public void setAlt(double alt) {
 		this.alt = alt;
 	}
-	public Wifi getWifi(Wifi_Scan ws) {
-		return ws.w;
+	
+	public Wifi getWifi() {
+		return this.w;
 	}
 	
 	public void setWifi(Wifi w) {
@@ -90,5 +91,14 @@ public class Wifi_Scan extends Wifi{
 	}
 	public static void setC(Csv c) {
 		Wifi_Scan.c = c;
+	}
+	
+	/**
+	 * This function overrides the object toString function and returns the Wifi_Scan object in the wanted format, by the Wifi_Scan object fields.
+	 * @return str - Wifi_Scan object in string.
+	 */
+	public String toString (){
+		String str=this.w.toString()+this.lat+","+this.lon+","+this.alt+",";
+		return str;
 	}
 }

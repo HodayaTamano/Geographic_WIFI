@@ -25,7 +25,8 @@ public class Algorithm2 {
 	final static int num_of_samples = 4; //to find location we need at least 3 measurements
 
 	/**
-	 * 
+	 * This function receives two files - one with missing location and another full csv file, and sends every row
+	 * to the missing_location function to calculate the user's location. (row here is referred as a scan from a user's phone).
 	 * @param missing_location
 	 * @param full_csv
 	 * @return ArrayList
@@ -45,7 +46,14 @@ public class Algorithm2 {
 		return missing_location;
 	}
 
-
+	/**
+	 * This function passes throughout a whole csv file and compares to a row from the missing csv file.
+	 * It creates an arraylist of samples of wifis to calculate user location,
+	 * then sends and receives answer from user_location.
+	 * @param original
+	 * @param full_csv
+	 * @return
+	 */
 	private static double [] search_in_csv(Row original, ArrayList<Row> full_csv){
 
 		ArrayList<Wifi_Samples> answer = new ArrayList<Wifi_Samples>();
@@ -54,10 +62,10 @@ public class Algorithm2 {
 		for (int i=0; i<full_csv.size(); i++){//pass throughout the csv and search for matching samples by mac
 			Row current = new Row();
 			current = full_csv.get(i);
-			for (int j=0; j<original.getWifi().size(); j++){
+			for (int j=0; j<original.getWifi().size(); j++){ //passes throughout the original missing loc row with loc info from current row
 				Wifi original_wifi = original.getWifi().get(j);
 				Wifi_Samples ws = new Wifi_Samples(current.getLat(), current.getLon(), current.getAlt());
-				for (int k=0; k<current.getWifi().size(); k++){
+				for (int k=0; k<current.getWifi().size(); k++){ //passes throughout the wifi list in row
 					Wifi current_wifi = original.getWifi().get(j);
 					if (current_wifi.getMac().equals(original_wifi.getMac())){
 						ws.addWifi(current_wifi);
@@ -70,7 +78,13 @@ public class Algorithm2 {
 		return loc;
 	}
 
-
+	/**
+ 	* This function calculates the user's location by an arraylist of samples and a row from the mising loc. info fole.
+ 	* Returns the location info as an array of 3 doubles.
+ 	* @param ws
+ 	* @param original
+ 	* @return
+ 	*/
 	public static double [] user_location (ArrayList<Wifi_Samples> ws, Row original){
 
 		double [] loc = new double[3]; //to return answer

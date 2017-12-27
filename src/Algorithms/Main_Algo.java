@@ -42,6 +42,11 @@ public class Main_Algo {
 				output1 = scan.next();
 				num_samples = Integer.parseInt(scan.next());
 				//sending data received to execute algorithm 1
+				ArrayList<Row> full_csv1 = new ArrayList<Row>();
+				Wifi_Scans scansByLoc = new Wifi_Scans();
+				full_csv1 = Csv.csv_to_file(input);
+				scansByLoc = Algorithm1.findMacScans(full_csv1);
+				Wifi_Scans.print_Scans(scansByLoc, output1);
 				
 				
 				break;
