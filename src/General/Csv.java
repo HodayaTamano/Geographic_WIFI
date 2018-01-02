@@ -240,16 +240,21 @@ public class Csv {
 				//checks if the values inserted are in the right format
 				try{
 					r.setWifi_count(Integer.parseInt(readline[5]));
-					r.setLat(Double.parseDouble(readline[2]));
-					r.setLon(Double.parseDouble(readline[3]));
-					r.setAlt(Double.parseDouble(readline[4]));
 
+					if (readline[2].isEmpty() || readline[3].isEmpty() ||  readline[4].isEmpty()){
+						r.setLat(0);
+						r.setLon(0);
+						r.setAlt(0);
+					}else{
+						r.setLat(Double.parseDouble(readline[2]));
+						r.setLon(Double.parseDouble(readline[3]));
+						r.setAlt(Double.parseDouble(readline[4]));
+					}
 				}catch(NumberFormatException e){ 
-					continue;
+					System.out.println("not at the format!");
 				}
-				
+
 				ArrayList<Wifi> wifi_list = new ArrayList<Wifi>();
-				
 				for (int i=0; i<r.getWifi_count(); i++){
 					Wifi w = new Wifi();
 					w.setSsid(readline[6+i*4]);
@@ -289,10 +294,10 @@ public class Csv {
 	public static void pass_to_file(ArrayList <Row> table, String path){
 		BufferedWriter bw = null;
 		PrintWriter pw = null;
-//		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
-//		for (int i=1; i<11; i++){
-//			Fields = Fields+"SSID"+i+", Mac"+i+", Frequency"+i+", Signal"+i+",";
-//		}
+		//		String Fields = "Time, ID, Latitude, Longtitude, Altitude, #Wifi,";
+		//		for (int i=1; i<11; i++){
+		//			Fields = Fields+"SSID"+i+", Mac"+i+", Frequency"+i+", Signal"+i+",";
+		//		}
 		try{
 			//C:/Users/hodaya/Desktop/data
 			//"C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv" - before we changed the function to receive path as well
@@ -300,7 +305,7 @@ public class Csv {
 			FileWriter fw = new FileWriter(path, false); //path to write file <--
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-//			pw.println(Fields);
+			//			pw.println(Fields);
 			for (int j=0; j<table.size(); j++){
 				pw.println(table.get(j).toString());
 			}
