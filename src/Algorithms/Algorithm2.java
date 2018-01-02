@@ -20,7 +20,7 @@ public class Algorithm2 {
 	final static int norm = 10000; 
 	final static double sig_diff = 0.4; 
 	final static int min_diff = 3;
-	static int no_signal = -120; 
+	final static int no_signal = -120; 
 	final static int diff_no_sig = 100; 
 	final static int num_of_samples = 4; //to find location we need at least 3 measurements
 
@@ -37,10 +37,11 @@ public class Algorithm2 {
 		for (int i=0; i<missing_location.size(); i++){
 			Row current = new Row();
 			current = missing_location.get(i);
+			//System.out.println(current);
 			loc = search_in_csv(current, full_csv); //send row to search_in_csv to calculate location
 			current.setLat(loc[0]);
 			current.setLon(loc[1]);
-			current.setAlt((int) loc[2]);
+			current.setAlt((int)loc[2]);
 			missing_location.set(i, current); //switch between the original Row to the Row we are holding with location data
 		}
 		return missing_location;
@@ -66,12 +67,12 @@ public class Algorithm2 {
 				Wifi original_wifi = original.getWifi().get(j);
 				Wifi_Samples ws = new Wifi_Samples(current.getLat(), current.getLon(), current.getAlt());
 				for (int k=0; k<current.getWifi().size(); k++){ //passes throughout the wifi list in row
-					Wifi current_wifi = original.getWifi().get(j);
+					Wifi current_wifi = current.getWifi().get(k);
 					if (current_wifi.getMac().equals(original_wifi.getMac())){
 						ws.addWifi(current_wifi);
 					}
 				}
-				answer.add(ws);
+				answer.add(ws);	
 			}	
 		}
 		loc = user_location(answer, original);
@@ -79,12 +80,12 @@ public class Algorithm2 {
 	}
 
 	/**
- 	* This function calculates the user's location by an arraylist of samples and a row from the mising loc. info file.
- 	* Returns the location info as an array of 3 doubles.
- 	* @param ws
- 	* @param original
- 	* @return
- 	*/
+	 * This function calculates the user's location by an arraylist of samples and a row from the mising loc. info file.
+	 * Returns the location info as an array of 3 doubles.
+	 * @param ws
+	 * @param original
+	 * @return
+	 */
 	public static double [] user_location (ArrayList<Wifi_Samples> ws, Row original){
 
 		double [] loc = new double[3]; //to return answer
@@ -108,7 +109,9 @@ public class Algorithm2 {
 				}
 			}
 			ws.get(i).setPi(pi);
+			
 			Wifi_Samples.sortingByPi(ws); //sort sample list by pi value
+
 			//select strongest samples by pi value
 			try{
 				for (int n=num_of_samples; n<ws.size(); n++){
