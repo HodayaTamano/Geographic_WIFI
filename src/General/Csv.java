@@ -19,13 +19,13 @@ public class Csv {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String path ="C:/Users/hodaya/Desktop/algo/boazevel"; //change path here <-
+		String path ="C:/Users/hodaya/git/Geographic_WIFI/Input Files"; //change path here <-
 		ArrayList<Row> data_csv = pass_to_table(path);
 		for (int i=0; i<data_csv.size(); i++){
 			//Row r = data_csv.get(i);
 			System.out.println(data_csv.get(i).toString());
 		}
-		pass_to_file(data_csv, "C:/Users/hodaya/Desktop/algo/boazevel/csv.csv");
+		pass_to_file(data_csv, "C:/Users/hodaya/git/Geographic_WIFI/Input Files/all_data.csv");
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class Csv {
 		try{
 			//C:/Users/hodaya/Desktop/data
 			//"C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv" - before we changed the function to receive path as well
-			//the path obove was inserted in the right place above in the first function that sends to this one
+			//the path above was inserted in the right place above in the first function that sends to this one
 			FileWriter fw = new FileWriter(path, false); //path to write file <--
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
