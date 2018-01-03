@@ -93,7 +93,7 @@
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextField1" max="32767" attributes="0"/>
+                                              <Component id="row_from_gui" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
@@ -104,9 +104,9 @@
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="mac2" pref="151" max="32767" attributes="0"/>
+                                                          <Component id="mac2" pref="173" max="32767" attributes="0"/>
                                                           <Component id="mac1" max="32767" attributes="0"/>
-                                                          <Component id="jFormattedTextField4" max="32767" attributes="0"/>
+                                                          <Component id="mac3" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="102" attributes="0">
@@ -151,7 +151,7 @@
                       <Component id="jLabel3" min="-2" pref="14" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="row_from_gui" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Execute_Algo2_Row" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -169,7 +169,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jFormattedTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mac3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="signal3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -202,10 +202,7 @@
                 <Property name="text" type="java.lang.String" value="Enter a row - to calculate location:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enter row..."/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="row_from_gui">
             </Component>
             <Component class="javax.swing.JButton" name="Execute_Algo2_Row">
               <Properties>
@@ -239,7 +236,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
+            <Component class="javax.swing.JFormattedTextField" name="mac3">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="HH:HH:HH:HH:HH:HH" subtype="-1" type="5"/>
@@ -291,51 +288,71 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="path_csv_file" max="32767" attributes="0"/>
+                                                  <Component id="path_wigle_files" pref="324" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="add_wigle_files_button" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="add_csv_file_button" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="empty_file_button" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                              <Component id="save_as_unified_button" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="num_of_access_points" min="-2" pref="64" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="save_as_kml_button" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="filter_info" min="-2" pref="78" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="num_rows" min="-2" pref="64" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="109" max="-2" attributes="0"/>
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
-                              <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jTextField4" min="-2" pref="109" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="path_csv_file" max="32767" attributes="0"/>
-                                          <Component id="path_wigle_files" pref="324" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="add_wigle_files" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="add_csv_file" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -348,7 +365,7 @@
                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="add_wigle_files" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="add_wigle_files_button" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="path_wigle_files" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -356,20 +373,24 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="path_csv_file" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="add_csv_file" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="add_csv_file_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="save_as_unified_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="save_as_kml_button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="empty_file_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="num_rows" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="filter_info" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="num_of_access_points" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
@@ -379,45 +400,42 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Folder of Wigle files:"/>
+                <Property name="text" type="java.lang.String" value="Folder of Wigle files (whole path):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel24">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Enter path of unified CSV file:"/>
+                <Property name="text" type="java.lang.String" value="Enter whole path of unified CSV file:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="empty_file_button">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empty"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="save_as_unified_button">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save as unified CSV"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="save_as_kml_button">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save as KML file"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="add_wigle_files">
+            <Component class="javax.swing.JButton" name="add_wigle_files_button">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="path_wigle_files">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Insert path...."/>
-              </Properties>
+              <Events>
+                <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="path_wigle_filesInputMethodTextChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="path_csv_file">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Insert path...."/>
-              </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="add_csv_file">
+            <Component class="javax.swing.JButton" name="add_csv_file_button">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -427,19 +445,25 @@
                 <Property name="text" type="java.lang.String" value="INFO:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="num_rows">
+            </Component>
+            <Component class="javax.swing.JTextField" name="num_of_access_points">
+            </Component>
+            <Component class="javax.swing.JTextField" name="filter_info">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Num of rows"/>
+                <Property name="text" type="java.lang.String" value="Num. of rows:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JLabel" name="jLabel27">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Num of access points"/>
+                <Property name="text" type="java.lang.String" value="Num. of access points:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JLabel" name="jLabel28">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Filter info"/>
+                <Property name="text" type="java.lang.String" value="Filter info:"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -462,9 +486,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="Start_time" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Component id="Start_time_filter" min="-2" pref="158" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="End_Time" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="End_Time_filter" min="-2" pref="160" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -475,14 +499,14 @@
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                               <Component id="jBkjdkh" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="time_area" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="time_area_filter" min="-2" pref="100" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="location_lat" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <Component id="location_lat_filter" min="-2" pref="90" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="location_lon" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <Component id="location_lon_filter" min="-2" pref="90" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -495,7 +519,7 @@
                                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="location_alt" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="location_alt_filter" min="-2" pref="90" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -520,12 +544,14 @@
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Group type="102" attributes="0">
+                                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                                      <Component id="Location_And" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                                      <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                                  </Group>
                                                                   <Component id="Location_NotUse" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="Location_And" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                                                               </Group>
                                                           </Group>
                                                       </Group>
@@ -541,12 +567,16 @@
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <Component id="Time_Not" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Location_Not" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                   <Component id="Location_Or" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Location_Not" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="filter_execute_button" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -589,8 +619,8 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="End_Time" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Start_time" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="End_Time_filter" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Start_time_filter" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -639,9 +669,10 @@
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jBkjdkh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="time_area" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="time_area_filter" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="filter_execute_button" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -654,11 +685,11 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="location_lat" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="location_lon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="location_lat_filter" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="location_lon_filter" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="location_alt" min="-2" max="-2" attributes="0"/>
+                                              <Component id="location_alt_filter" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -679,9 +710,9 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="Location_NotUse" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -776,14 +807,14 @@
                 <Property name="text" type="java.lang.String" value="Or"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="Start_time">
+            <Component class="javax.swing.JFormattedTextField" name="Start_time_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="####-##-## ##:##:##" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="End_Time">
+            <Component class="javax.swing.JFormattedTextField" name="End_Time_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="####-##-## ##:##:##" subtype="-1" type="5"/>
@@ -844,38 +875,38 @@
                 <Property name="text" type="java.lang.String" value="Or"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="location_lat">
+            <Component class="javax.swing.JFormattedTextField" name="location_lat_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.########" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="location_lon">
+            <Component class="javax.swing.JFormattedTextField" name="location_lon_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.########" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="location_alt">
+            <Component class="javax.swing.JFormattedTextField" name="location_alt_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format subtype="0" type="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="location_altActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="location_alt_filterActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="time_area">
+            <Component class="javax.swing.JFormattedTextField" name="time_area_filter">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format subtype="0" type="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="time_areaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="time_area_filterActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
@@ -904,9 +935,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="id_filter">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enter ID wanted...."/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="Id_NotUse">
               <Properties>
@@ -955,6 +983,11 @@
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Or"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="filter_execute_button">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Execute"/>
               </Properties>
             </Component>
           </SubComponents>
