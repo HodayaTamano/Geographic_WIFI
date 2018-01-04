@@ -111,14 +111,13 @@
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                                       <Component id="signal3" min="-2" pref="55" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                                       <Component id="signal1" min="-2" pref="55" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
+                                              <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="103" groupAlignment="1" attributes="0">
@@ -233,6 +232,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Execute Algo 2 on row"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Execute_Algo2_RowActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>

@@ -55,7 +55,7 @@ public class Algorithm2 {
 	 * @param full_csv
 	 * @return
 	 */
-	private static double [] search_in_csv(Row original, ArrayList<Row> full_csv){
+	public static double [] search_in_csv(Row original, ArrayList<Row> full_csv){
 
 		ArrayList<Wifi_Samples> answer = new ArrayList<Wifi_Samples>();
 		double [] loc = new double [3];
