@@ -35,7 +35,7 @@ public class Wifi_Scans {
 	}
 	/**
 	 * This function removes the unnecessary scan from a Wifi_Scans list after it was sorted by 'pi' value 
-	 * (measures resemblance)to the number of samples wanted bu the users input.
+	 * (measures resemblance)to the number of samples wanted by the users input.
 	 * @param mac
 	 * @param num - number of samples wanted
 	 * @return ArrayList of num rows of Wifi_Scan objects
