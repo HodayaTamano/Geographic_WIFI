@@ -836,6 +836,22 @@ public class geo_wifi extends javax.swing.JFrame {
 
 	private void Execute_Algo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Execute_Algo1ActionPerformed
 		// TODO add your handling code here:
+        ArrayList<Wifi_Scan> ws_list = new ArrayList<Wifi_Scan>();
+        double [] loc = new double[3];
+        String mac = mac_Algo1.getText();
+        String correct_mac = "";
+        for(int i=0; i<mac.length(); i++){
+        	if (Character.isLetter(mac.charAt(i)))
+        		correct_mac+=Character.toLowerCase(mac.charAt(i));
+        	else
+        		correct_mac+=mac.charAt(i);
+        }
+        System.out.println(correct_mac);
+        ws_list = Wifi_Scans.numOfPoints(all_data, correct_mac, 4);
+        loc = Algorithm1.ap_location(ws_list);
+        lat_output_field.setText(Double.toString(loc[0]));
+        lon_output_field.setText(Double.toString(loc[1]));
+        alt_output_field.setText(Double.toString(loc[2]));
 	}//GEN-LAST:event_Execute_Algo1ActionPerformed
 
 	private void mac_Algo1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mac_Algo1CaretUpdate
