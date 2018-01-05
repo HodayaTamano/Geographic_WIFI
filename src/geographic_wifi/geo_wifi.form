@@ -494,6 +494,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empty all_data.csv"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="empty_file_buttonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="save_as_unified_button">
               <Properties>
@@ -524,6 +527,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_csv_file_buttonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel25">
               <Properties>

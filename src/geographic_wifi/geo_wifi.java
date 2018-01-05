@@ -19,13 +19,14 @@ import Algorithms.*;
  * @author Leandrog
  */
 public class geo_wifi extends javax.swing.JFrame {
-	ArrayList<Row> all_data = new ArrayList<Row>();
+    ArrayList<Row> all_data = new ArrayList<Row>();
     /**
      * Creates new form geo_wifi
      */
     public geo_wifi() {
         initComponents();
-		all_data = Csv.csv_to_file("C:/Users/Leandrog/git/GW2/Input Files/all_data.csv");
+        all_data = Csv.csv_to_file("C:/Users/Leandrog/git/GW2/Input Files/all_data.csv");
+
     }
 
     /**
@@ -337,6 +338,11 @@ public class geo_wifi extends javax.swing.JFrame {
         jLabel24.setText("Enter whole path of unified CSV file:");
 
         empty_file_button.setText("Empty all_data.csv");
+        empty_file_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empty_file_buttonActionPerformed(evt);
+            }
+        });
 
         save_as_unified_button.setText("Save as unified CSV");
 
@@ -358,6 +364,11 @@ public class geo_wifi extends javax.swing.JFrame {
         });
 
         add_csv_file_button.setText("Add");
+        add_csv_file_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_csv_file_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel25.setText("INFO:");
 
@@ -836,7 +847,6 @@ public class geo_wifi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     /**
      * This function defines the actions to be made when the user presses the "Execute_Algo1" button in the GUI.
      * Once pressed, the text in the text field under "Enter MAC for Algorithm 1:" is taken, transfered to lower case letters and 
@@ -886,8 +896,7 @@ public class geo_wifi extends javax.swing.JFrame {
     private void path_wigle_filesInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_path_wigle_filesInputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_path_wigle_filesInputMethodTextChanged
-
-    /**
+  /**
      * This function defines the actions to be made when the user presses the"Execute Algo2 on Row" button in the Algorithms panel.
      * Once the user hits the button, the text from the text field under "enter a row-to calculate location", the text is then 
      * turned into a Row object and the location for it is calculated in Algorithm 2.
@@ -946,9 +955,10 @@ public class geo_wifi extends javax.swing.JFrame {
      * @param evt
      */
     private void add_wigle_files_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_wigle_files_buttonActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
         String path = path_wigle_files.getText();
         ArrayList<Row> to_add = new ArrayList<Row>();
+        to_add = Csv.pass_to_table(path);
         for (int i=0; i<to_add.size(); i++)
             all_data.add(to_add.get(i));
         //needs to be repaired
@@ -956,9 +966,37 @@ public class geo_wifi extends javax.swing.JFrame {
         Wifi_Scans w = new Wifi_Scans();
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
         num_of_access_points.setText(Integer.toString(w.getSize()));
-        
-        
     }//GEN-LAST:event_add_wigle_files_buttonActionPerformed
+    
+    /**
+     * This function defines the actions that are made once the user presses the "Add" button by "Enter whole path of unified CSV file:"
+     * in the Input/Output panel in the GUI. The file in the path is passed to an ArrayList of Row objects, then added to all_data.
+     */
+    private void add_csv_file_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_csv_file_buttonActionPerformed
+        // TODO add your handling code here:
+        String path = path_csv_file.getText();
+        ArrayList<Row> to_add = new ArrayList<Row>();
+        to_add = Csv.csv_to_file(path);
+        for (int i=0; i<to_add.size(); i++)
+            all_data.add(to_add.get(i));
+        num_rows.setText(Integer.toString(all_data.size()));
+        Wifi_Scans w = new Wifi_Scans();
+        w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
+        num_of_access_points.setText(Integer.toString(w.getSize()));
+    }//GEN-LAST:event_add_csv_file_buttonActionPerformed
+    
+    /**
+     * This function defines what is made once the "Empty all_data.csv" button in the Input/Output panel is pressed.
+     * All rows from all_data are then erased, and the text fields with info about it are updated.
+     */
+    private void empty_file_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empty_file_buttonActionPerformed
+        // TODO add your handling code here:
+        for (int i=0; i<all_data.size(); i++)
+            all_data.remove(i);
+        num_rows.setText("0");
+        num_of_access_points.setText("0");
+        filter_info.setText("None");
+    }//GEN-LAST:event_empty_file_buttonActionPerformed
 
     /**
      * @param args the command line arguments
