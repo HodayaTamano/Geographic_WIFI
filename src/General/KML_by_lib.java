@@ -205,7 +205,7 @@ public class KML_by_lib {
 		folder.withName("Wifi Locations").withOpen(true);
 		// create Placemark elements
 		//here we insert the points in a for-loop
-		for (int j=0; j<table.size(); j++){
+		for (int j=0; j<table.size(); j++){ 
 			for (int i=0; i<table.get(j).getWifi_count(); i++){
 				try{
 					createPlacemarkWithChart(doc, folder, table.get(j).getLon(), table.get(j).getLat(),
