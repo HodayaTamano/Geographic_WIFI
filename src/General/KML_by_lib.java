@@ -17,7 +17,7 @@ public class KML_by_lib {
 
 	
 	public static void main(String[] args) throws FileNotFoundException{
-		String path ="C:\\Users\\hodaya\\Desktop\\data\\general_csv.csv"; //path of input file <--
+		String path ="C:/Users/Leandrog/git/GW2/Input Files/all_data.csv"; //path of input file <--
 		ArrayList<Row> data_kml = pass_to_kml(path);
 		//System.out.println(max_signal.toString());
 		data_kml = remove_lows(data_kml); //erases low signal wifi's
@@ -216,7 +216,7 @@ public class KML_by_lib {
 			}
 		}
 		// print and save
-		kml.marshal(new File("general_kml.kml")); //writes to project folder in workspace <--
+		kml.marshal(new File("C:/Users/Leandrog/git/GW2/Input Files/general_kml.kml")); //writes to project folder in workspace <--
 	}
 	
 	/**
