@@ -131,18 +131,6 @@ public class Algorithm2 {
 
 	//this part is a preparation for the next phase in this project (3)
 	public static void main(String[] args){
-		/*	ArrayList<Wifi> macs = new ArrayList<Wifi>();
-		Scanner s = new Scanner(System.in);
-		System.out.println("Enter by how many macs to measure your location: (minimum three macs)");
-		int num = Integer.parseInt(s.nextLine());
-		for (int i=0; i<num; i++){
-			Wifi w = new Wifi();
-			System.out.println("Enter mac:");
-			w.setMac(s.nextLine());
-			System.out.println("Enter signal:");
-			w.setSignal(Integer.parseInt(s.nextLine()));
-			macs.add(w);
-		}*/
 
 	}
 }

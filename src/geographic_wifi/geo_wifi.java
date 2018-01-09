@@ -16,16 +16,17 @@ import Algorithms.*;
 
 /**
  *
- * @author Leandrog
+ * @author HodayaTamano&ShirBentabou
  */
 public class geo_wifi extends javax.swing.JFrame {
+    final static String all_dataPath = "C:/Users/Leandrog/git/GW2/Input Files/all_data.csv";
     ArrayList<Row> all_data = new ArrayList<Row>();
     /**
      * Creates new form geo_wifi
      */
     public geo_wifi() {
         initComponents();
-        all_data = Csv.csv_to_file("C:/Users/Leandrog/git/GW2/Input Files/all_data.csv");
+        all_data = Csv.csv_to_file(all_dataPath);
 
     }
 
@@ -89,24 +90,20 @@ public class geo_wifi extends javax.swing.JFrame {
         Filter = new javax.swing.JPanel();
         Time_And = new javax.swing.JRadioButton();
         Time_Not = new javax.swing.JRadioButton();
-        Time_Or = new javax.swing.JRadioButton();
         Time_NotUse = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         Start_time_filter = new javax.swing.JFormattedTextField();
         End_Time_filter = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         Location_NotUse = new javax.swing.JRadioButton();
         Location_And = new javax.swing.JRadioButton();
         Location_Not = new javax.swing.JRadioButton();
-        Location_Or = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         location_lat_filter = new javax.swing.JFormattedTextField();
         location_lon_filter = new javax.swing.JFormattedTextField();
         location_alt_filter = new javax.swing.JFormattedTextField();
@@ -120,11 +117,9 @@ public class geo_wifi extends javax.swing.JFrame {
         Id_NotUse = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         filter_execute_button = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -345,8 +340,18 @@ public class geo_wifi extends javax.swing.JFrame {
         });
 
         save_as_unified_button.setText("Save as unified CSV");
+        save_as_unified_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_as_unified_buttonActionPerformed(evt);
+            }
+        });
 
         save_as_kml_button.setText("Save as KML file");
+        save_as_kml_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //save_as_kml_buttonActionPerformed(evt);
+            }
+        });
 
         add_wigle_files_button.setText("Add");
         add_wigle_files_button.addActionListener(new java.awt.event.ActionListener() {
@@ -406,7 +411,7 @@ public class geo_wifi extends javax.swing.JFrame {
                 .addComponent(empty_file_button)
                 .addGap(88, 88, 88)
                 .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel34)
                 .addGap(105, 105, 105))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Input_OutputLayout.createSequentialGroup()
@@ -498,15 +503,13 @@ public class geo_wifi extends javax.swing.JFrame {
 
         Time_Group.add(Time_Not);
 
-        Time_Group.add(Time_Or);
-        Time_Or.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Time_OrActionPerformed(evt);
-            }
-        });
-
         Time_Group.add(Time_NotUse);
         Time_NotUse.setSelected(true);
+        Time_NotUse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Time_NotUseActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Time");
 
@@ -515,8 +518,6 @@ public class geo_wifi extends javax.swing.JFrame {
         jLabel7.setText("And");
 
         jLabel8.setText("Not");
-
-        jLabel9.setText("Or");
 
         try {
             Start_time_filter.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-## ##:##:##")));
@@ -539,15 +540,11 @@ public class geo_wifi extends javax.swing.JFrame {
 
         Location_Group.add(Location_Not);
 
-        Location_Group.add(Location_Or);
-
         jLabel11.setText("Don't Use");
 
         jLabel12.setText("And");
 
         jLabel13.setText("Not");
-
-        jLabel14.setText("Or");
 
         try {
             location_lat_filter.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.########")));
@@ -592,17 +589,18 @@ public class geo_wifi extends javax.swing.JFrame {
 
         Id_Group.add(jRadioButton3);
 
-        Id_Group.add(jRadioButton4);
-
         jLabel16.setText("Don't Use");
 
         jLabel20.setText("Not");
 
         jLabel21.setText("And");
 
-        jLabel22.setText("Or");
-
         filter_execute_button.setText("Execute");
+        filter_execute_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filter_execute_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel35.setText("saved to");
 
@@ -623,7 +621,7 @@ public class geo_wifi extends javax.swing.JFrame {
                                 .addComponent(Start_time_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(End_Time_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(FilterLayout.createSequentialGroup()
                                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -652,50 +650,44 @@ public class geo_wifi extends javax.swing.JFrame {
                                                 .addComponent(jLabel19)))))
                                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)
-                                        .addGap(55, 55, 55))
-                                    .addGroup(FilterLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(FilterLayout.createSequentialGroup()
-                                                .addGap(11, 11, 11)
-                                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel7)
-                                                    .addComponent(Time_And)
-                                                    .addComponent(Time_NotUse))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(FilterLayout.createSequentialGroup()
-                                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel11)
-                                                    .addGroup(FilterLayout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(Location_And)
-                                                                .addComponent(jLabel12))
-                                                            .addComponent(Location_NotUse))))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Time_Or)
-                            .addComponent(jLabel9)
-                            .addComponent(Time_Not)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel13)
-                            .addGroup(FilterLayout.createSequentialGroup()
-                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Location_Not)
-                                    .addComponent(jLabel14)
-                                    .addComponent(Location_Or))
-                                .addGap(18, 18, 18)
-                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(filter_execute_button)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
+                                                .addComponent(Location_NotUse)
+                                                .addGap(67, 67, 67)
+                                                .addComponent(Location_Not))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
+                                                .addComponent(Time_NotUse)
+                                                .addGap(90, 90, 90))))
                                     .addGroup(FilterLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
+                                        .addGap(35, 35, 35)
+                                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel6))
+                                        .addGap(18, 18, 18)
                                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel37)
-                                            .addComponent(jLabel35)
-                                            .addComponent(jLabel36))))))
+                                            .addGroup(FilterLayout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel13))
+                                            .addGroup(FilterLayout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel8))
+                                            .addGroup(FilterLayout.createSequentialGroup()
+                                                .addComponent(Time_And)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Time_Not)
+                                                .addGap(0, 0, Short.MAX_VALUE)))))))
+                        .addGap(36, 36, 36)
+                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(filter_execute_button)
+                            .addGroup(FilterLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel37)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jLabel36))))
                         .addGap(20, 20, 20))
                     .addGroup(FilterLayout.createSequentialGroup()
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,17 +703,16 @@ public class geo_wifi extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addGap(18, 18, 18)
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(jRadioButton2))
-                        .addGap(18, 18, 18)
-                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jLabel21))
-                        .addGap(18, 18, 18)
-                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jLabel22))
-                        .addGap(88, 88, 88))
+                            .addComponent(Location_And)
+                            .addGroup(FilterLayout.createSequentialGroup()
+                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButton3)
+                                    .addComponent(jLabel21))
+                                .addGap(18, 18, 18)
+                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jRadioButton2))))
+                        .addGap(127, 127, 127))
                     .addGroup(FilterLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -739,38 +730,26 @@ public class geo_wifi extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel5))
                     .addGroup(FilterLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(14, 14, 14)
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
+                            .addComponent(jLabel7)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Time_Not)
-                            .addComponent(Time_NotUse, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(FilterLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel9))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Time_And, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Time_Or, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                            .addComponent(Time_And)
+                            .addComponent(Time_NotUse))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(FilterLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Location_Not))
-                            .addComponent(filter_execute_button)
+                                .addGap(20, 20, 20)
+                                .addComponent(filter_execute_button))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FilterLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(8, 8, 8)
                                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jBkjdkh)
                                     .addComponent(radius_units, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -791,43 +770,41 @@ public class geo_wifi extends javax.swing.JFrame {
                                         .addGap(3, 3, 3))))
                             .addGroup(FilterLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel35))
+                                .addComponent(jLabel35)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Location_Or)
-                                    .addGroup(FilterLayout.createSequentialGroup()
-                                        .addComponent(jLabel36)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel37))))
-                            .addGroup(FilterLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel12)
+                                .addComponent(jLabel36)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Location_And))))
+                                .addComponent(jLabel37))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterLayout.createSequentialGroup()
-                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Location_NotUse)
+                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Location_And)
+                            .addComponent(Location_NotUse)
+                            .addComponent(Location_Not))
                         .addGap(60, 60, 60)))
                 .addGap(35, 35, 35)
                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButton4)
                     .addComponent(jRadioButton3)
                     .addGroup(FilterLayout.createSequentialGroup()
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jLabel20)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel15))
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Id_NotUse)
-                            .addComponent(id_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jRadioButton2))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(FilterLayout.createSequentialGroup()
+                                    .addComponent(id_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1, 1, 1))
+                                .addComponent(Id_NotUse, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         TabbedPanel.addTab("Filter", Filter);
@@ -881,16 +858,58 @@ public class geo_wifi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radius_unitsActionPerformed
 
-    private void Time_OrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time_OrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Time_OrActionPerformed
-
     private void location_alt_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_location_alt_filterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_location_alt_filterActionPerformed
 
     private void Execute_Algo2_MacsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Execute_Algo2_MacsActionPerformed
         // TODO add your handling code here:
+            	double loc [] = new double [3];
+    	String m1 = mac1.getText();
+    	String correct_m1="";
+    	for(int i=0; i<m1.length(); i++){
+        	if (Character.isLetter(m1.charAt(i)))
+        		correct_m1+=Character.toLowerCase(m1.charAt(i));
+        	else
+        		correct_m1+=m1.charAt(i);
+        }
+    	String m2 = mac2.getText();
+    	String correct_m2="";
+    	for(int i=0; i<m2.length(); i++){
+        	if (Character.isLetter(m2.charAt(i)))
+        		correct_m2+=Character.toLowerCase(m2.charAt(i));
+        	else
+        		correct_m2+=m2.charAt(i);
+        }
+    	String m3 = mac3.getText();
+    	String correct_m3="";
+    	for(int i=0; i<m3.length(); i++){
+        	if (Character.isLetter(m3.charAt(i)))
+        		correct_m3+=Character.toLowerCase(m3.charAt(i));
+        	else
+        		correct_m3+=m3.charAt(i);
+        }
+    	double s1 = Double.parseDouble(signal1.getText());
+    	double s2 = Double.parseDouble(signal2.getText());
+    	double s3 = Double.parseDouble(signal3.getText());
+    	Row r = new Row();
+    	ArrayList<Wifi> w = new ArrayList<Wifi>();
+    	Wifi temp = new Wifi();
+    	temp.setSignal(s1);
+    	temp.setMac(correct_m1);
+    	w.add(temp);
+    	temp.setSignal(s2);
+    	temp.setMac(correct_m2);
+    	w.add(temp);
+    	temp.setSignal(s3);
+    	temp.setMac(correct_m3);
+    	w.add(temp);
+    	r.setWifi(w);
+    	loc = Algorithm2.search_in_csv(r,all_data);
+        lat_output_field.setText(Double.toString(loc[0]));
+        lon_output_field.setText(Double.toString(loc[1]));
+        alt_output_field.setText(Double.toString(loc[2]));
+
     }//GEN-LAST:event_Execute_Algo2_MacsActionPerformed
 
     private void path_wigle_filesInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_path_wigle_filesInputMethodTextChanged
@@ -967,7 +986,6 @@ public class geo_wifi extends javax.swing.JFrame {
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
         num_of_access_points.setText(Integer.toString(w.getSize()));
     }//GEN-LAST:event_add_wigle_files_buttonActionPerformed
-    
     /**
      * This function defines the actions that are made once the user presses the "Add" button by "Enter whole path of unified CSV file:"
      * in the Input/Output panel in the GUI. The file in the path is passed to an ArrayList of Row objects, then added to all_data.
@@ -984,7 +1002,6 @@ public class geo_wifi extends javax.swing.JFrame {
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
         num_of_access_points.setText(Integer.toString(w.getSize()));
     }//GEN-LAST:event_add_csv_file_buttonActionPerformed
-    
     /**
      * This function defines what is made once the "Empty all_data.csv" button in the Input/Output panel is pressed.
      * All rows from all_data are then erased, and the text fields with info about it are updated.
@@ -997,6 +1014,42 @@ public class geo_wifi extends javax.swing.JFrame {
         num_of_access_points.setText("0");
         filter_info.setText("None");
     }//GEN-LAST:event_empty_file_buttonActionPerformed
+    /**
+     * This function defines the functionality of the "Save as Unified CSV" button in the Input/Output panel in the GUI.
+     * Once pressed, all_data table is sent to csv.pass_to_table function with the path from the text field under the button and written to the path given by the user.
+     */
+    private void save_as_unified_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_as_unified_buttonActionPerformed
+        // TODO add your handling code here:
+        String path_output = csv_file_path_save.getText();
+        if (path_output=="")
+            csv_file_path_save.setText("Path not given!");
+        else{
+            Csv.pass_to_file(all_data, path_output);
+        }
+    }//GEN-LAST:event_save_as_unified_buttonActionPerformed
+    /**
+     * This function defines the functionality of the "Save as KML file" button in the Input/Output panel in the GUI.
+     * Once pressed, all_data table is sent to kml_by_lib.pass_to_kml function with the path from the text field under the button and written to the path given by the user.
+     */
+//    private void save_as_kml_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_as_kml_buttonActionPerformed
+//        // TODO add your handling code here:
+//        String path_output = kml_path_file_save.getText();
+//        if (path_output=="")
+//            kml_path_file_save.setText("Path not given!");
+//        else{
+//            ArrayList<Row> kml_temp = new ArrayList<Row>();
+//            kml_temp=KML_by_lib.pass_to_kml(all_dataPath);
+//            KML_by_lib.kml_file(all_data, path_output);
+//        }
+//    }//GEN-LAST:event_save_as_kml_buttonActionPerformed
+
+    private void Time_NotUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time_NotUseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Time_NotUseActionPerformed
+
+    private void filter_execute_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_execute_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filter_execute_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1047,14 +1100,12 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Location_Group;
     private javax.swing.JRadioButton Location_Not;
     private javax.swing.JRadioButton Location_NotUse;
-    private javax.swing.JRadioButton Location_Or;
     private javax.swing.JFormattedTextField Start_time_filter;
     private javax.swing.JTabbedPane TabbedPanel;
     private javax.swing.JRadioButton Time_And;
     private javax.swing.ButtonGroup Time_Group;
     private javax.swing.JRadioButton Time_Not;
     private javax.swing.JRadioButton Time_NotUse;
-    private javax.swing.JRadioButton Time_Or;
     private javax.swing.JButton add_csv_file_button;
     private javax.swing.JButton add_wigle_files_button;
     private javax.swing.JTextField alt_output_field;
@@ -1069,7 +1120,6 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1078,7 +1128,6 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1100,10 +1149,8 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTextField kml_path_file_save;
     private javax.swing.JTextField lat_output_field;
     private javax.swing.JFormattedTextField location_alt_filter;

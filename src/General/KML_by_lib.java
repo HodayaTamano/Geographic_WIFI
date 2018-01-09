@@ -103,6 +103,8 @@ public class KML_by_lib {
 		kml_file(data_kml);
 	}
 	
+	
+	
 	/**
 	 * This function filters the data in data_kml file by the location range calculated by a point and area_time  that the user inputs,
 	 * and sends it to kml_file for it to be printed in a file.
@@ -199,7 +201,7 @@ public class KML_by_lib {
 
 		final Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument().withName("Kml").withOpen(true);
-		
+		System.out.println("I am in kml_file");
 		// create a Folder
 		Folder folder = doc.createAndAddFolder();
 		folder.withName("Wifi Locations").withOpen(true);
@@ -216,7 +218,7 @@ public class KML_by_lib {
 			}
 		}
 		// print and save
-		kml.marshal(new File("C:/Users/Leandrog/git/GW2/Input Files/general_kml.kml")); //writes to project folder in workspace <--
+		kml.marshal(new File("general_kml.kml")); //writes to project folder in workspace <--
 	}
 	
 	/**
