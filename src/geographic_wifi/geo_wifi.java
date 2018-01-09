@@ -1049,6 +1049,8 @@ public class geo_wifi extends javax.swing.JFrame {
 
     private void filter_execute_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_execute_buttonActionPerformed
         // TODO add your handling code here:
+    	
+    	
     }//GEN-LAST:event_filter_execute_buttonActionPerformed
 
     /**
