@@ -599,7 +599,12 @@ public class geo_wifi extends javax.swing.JFrame {
         filter_execute_button.setText("Execute");
         filter_execute_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filter_execute_buttonActionPerformed(evt);
+                try {
+					filter_execute_buttonActionPerformed(evt);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
