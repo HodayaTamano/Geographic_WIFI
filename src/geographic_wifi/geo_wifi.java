@@ -13,6 +13,7 @@ import Wifi_Data.*;
 import Tests.*;
 import General.*;
 import Algorithms.*;
+import Filter.*;
 
 /**
  *
@@ -115,8 +116,8 @@ public class geo_wifi extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         id_filter = new javax.swing.JFormattedTextField();
         Id_NotUse = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        Id_Not = new javax.swing.JRadioButton();
+        Id_And = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -349,7 +350,7 @@ public class geo_wifi extends javax.swing.JFrame {
         save_as_kml_button.setText("Save as KML file");
         save_as_kml_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //save_as_kml_buttonActionPerformed(evt);
+                save_as_kml_buttonActionPerformed(evt);
             }
         });
 
@@ -585,9 +586,9 @@ public class geo_wifi extends javax.swing.JFrame {
         Id_Group.add(Id_NotUse);
         Id_NotUse.setSelected(true);
 
-        Id_Group.add(jRadioButton2);
+        Id_Group.add(Id_Not);
 
-        Id_Group.add(jRadioButton3);
+        Id_Group.add(Id_And);
 
         jLabel16.setText("Don't Use");
 
@@ -706,12 +707,12 @@ public class geo_wifi extends javax.swing.JFrame {
                             .addComponent(Location_And)
                             .addGroup(FilterLayout.createSequentialGroup()
                                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
+                                    .addComponent(Id_And)
                                     .addComponent(jLabel21))
                                 .addGap(18, 18, 18)
                                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20)
-                                    .addComponent(jRadioButton2))))
+                                    .addComponent(Id_Not))))
                         .addGap(127, 127, 127))
                     .addGroup(FilterLayout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -789,7 +790,7 @@ public class geo_wifi extends javax.swing.JFrame {
                         .addGap(60, 60, 60)))
                 .addGap(35, 35, 35)
                 .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButton3)
+                    .addComponent(Id_And)
                     .addGroup(FilterLayout.createSequentialGroup()
                         .addGroup(FilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -803,7 +804,7 @@ public class geo_wifi extends javax.swing.JFrame {
                                     .addComponent(id_filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(1, 1, 1))
                                 .addComponent(Id_NotUse, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(Id_Not, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -1031,25 +1032,76 @@ public class geo_wifi extends javax.swing.JFrame {
      * This function defines the functionality of the "Save as KML file" button in the Input/Output panel in the GUI.
      * Once pressed, all_data table is sent to kml_by_lib.pass_to_kml function with the path from the text field under the button and written to the path given by the user.
      */
-//    private void save_as_kml_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_as_kml_buttonActionPerformed
-//        // TODO add your handling code here:
+    private void save_as_kml_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_as_kml_buttonActionPerformed
+        // TODO add your handling code here:
 //        String path_output = kml_path_file_save.getText();
 //        if (path_output=="")
 //            kml_path_file_save.setText("Path not given!");
 //        else{
 //            ArrayList<Row> kml_temp = new ArrayList<Row>();
-//            kml_temp=KML_by_lib.pass_to_kml(all_dataPath);
-//            KML_by_lib.kml_file(all_data, path_output);
-//        }
-//    }//GEN-LAST:event_save_as_kml_buttonActionPerformed
+//            kml_temp=pass_to_kml(all_dataPath);
+//            kml_file(all_data, path_output);
+//       }
+    }//GEN-LAST:event_save_as_kml_buttonActionPerformed
 
     private void Time_NotUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time_NotUseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Time_NotUseActionPerformed
 
-    private void filter_execute_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filter_execute_buttonActionPerformed
+    private void filter_execute_buttonActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException {//GEN-FIRST:event_filter_execute_buttonActionPerformed
         // TODO add your handling code here:
+    	ArrayList<Row> all_dataCopy = new ArrayList<Row>();
+    	all_dataCopy=Csv.copy_csv(all_data);
     	
+    	if (Time_And.isSelected()){
+    		String and_start = Start_time_filter.getText();
+    		Time and_s_time = new Time();
+    		String and_end = End_Time_filter.getText();
+    		Time and_e_time = new Time();
+    		and_s_time.setDATE(and_start);
+    		and_e_time.setDATE(and_end);
+			FilterTime.filterAND_by_Time(all_dataCopy, and_s_time, and_e_time);
+    	}
+    	
+    	if (Time_Not.isSelected()){
+    		String not_start = Start_time_filter.getText();
+    		Time not_s_time = new Time();
+    		String not_end = End_Time_filter.getText();
+    		Time not_e_time = new Time();
+    		not_s_time.setDATE(not_start);
+    		not_e_time.setDATE(not_end);
+			FilterTime.filterNOT_by_Time(all_dataCopy, not_s_time, not_e_time);
+
+    	}
+    	
+    	if (Id_And.isSelected()){
+    		String and_id = id_filter.getText();
+    		FilterID.filterAND_by_ID(all_dataCopy, and_id);
+    	}
+    	
+    	if (Id_Not.isSelected()){
+    		String not_id = id_filter.getText();
+    		FilterID.filterNOT_by_ID(all_dataCopy, not_id);	
+    	}
+    	
+    	if (Location_And.isSelected()){
+    		double rad = Double.parseDouble(radius_units.getText());
+    		double lat = Double.parseDouble(location_lat_filter.getText());
+    		double lon = Double.parseDouble(location_lon_filter.getText());
+    		//double alt = Double.parseDouble(location_alt_filter.getText());
+    		FilterLocation.filterNOT_by_Location(all_dataCopy, lat, lon, rad);
+    	}
+    	
+    	if (Location_Not.isSelected()){
+    		double not_rad = Double.parseDouble(radius_units.getText());
+    		double not_lat = Double.parseDouble(location_lat_filter.getText());
+    		double not_lon = Double.parseDouble(location_lon_filter.getText());
+    		//double not_alt = Double.parseDouble(location_alt_filter.getText());
+    		FilterLocation.filterNOT_by_Location(all_dataCopy, not_lat, not_lon, not_rad);
+    		
+    	}
+    	
+    	Csv.pass_to_file(all_dataCopy, all_dataPath);
     	
     }//GEN-LAST:event_filter_execute_buttonActionPerformed
 
@@ -1095,7 +1147,9 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JButton Execute_Algo2_Macs;
     private javax.swing.JButton Execute_Algo2_Row;
     private javax.swing.JPanel Filter;
+    private javax.swing.JRadioButton Id_And;
     private javax.swing.ButtonGroup Id_Group;
+    private javax.swing.JRadioButton Id_Not;
     private javax.swing.JRadioButton Id_NotUse;
     private javax.swing.JPanel Input_Output;
     private javax.swing.JRadioButton Location_And;
@@ -1151,8 +1205,6 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField kml_path_file_save;
     private javax.swing.JTextField lat_output_field;
     private javax.swing.JFormattedTextField location_alt_filter;

@@ -716,13 +716,13 @@
                                   <Component id="Location_And" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Id_And" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Id_Not" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -831,7 +831,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Id_And" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -848,7 +848,7 @@
                                       </Group>
                                       <Component id="Id_NotUse" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jRadioButton2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Id_Not" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1028,14 +1028,14 @@
                 <Property name="selected" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="Id_Not">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="Id_Group"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+            <Component class="javax.swing.JRadioButton" name="Id_And">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="Id_Group"/>

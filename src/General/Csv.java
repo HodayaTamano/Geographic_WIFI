@@ -27,6 +27,18 @@ public class Csv {
 		}
 		pass_to_file(data_csv, "C:/Users/hodaya/git/Geographic_WIFI/Input Files/all_data.csv");
 	}
+	
+	/**
+	 * This method makes a copy of an ArrayList<Row> object.
+	 */
+	public static ArrayList<Row> copy_csv(ArrayList<Row> original){
+		ArrayList<Row> copy = new ArrayList<Row>();
+		for (int i=0; i<original.size(); i++){
+			Row temp = original.get(i);
+			copy.add(temp);
+		}
+		return copy;
+	}
 
 	/**
 	 * This method receives a path of a folder and returns an ArrayList of the files whose extension is ".csv".
