@@ -21,7 +21,7 @@ import Filter.*;
  */
 public class geo_wifi extends javax.swing.JFrame {
     final static String all_dataPath = "C:/Users/Leandrog/git/GW2/Input Files/all_data.csv";
-    ArrayList<Row> all_data = new ArrayList<Row>();
+    static ArrayList<Row> all_data = new ArrayList<Row>();
     /**
      * Creates new form geo_wifi
      */
@@ -979,19 +979,46 @@ public class geo_wifi extends javax.swing.JFrame {
      * in the "Input/Output" panel, where the user inserts the path to the wigle files he wants to add to the unified csv all_data.
      * @param evt
      */
-    private void add_wigle_files_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_wigle_files_buttonActionPerformed
-       // TODO add your handling code here:
-        String path = path_wigle_files.getText();
+    private synchronized static void toAddFolder(String path, String check){
         ArrayList<Row> to_add = new ArrayList<Row>();
         to_add = Csv.pass_to_table(path);
         for (int i=0; i<to_add.size(); i++)
             all_data.add(to_add.get(i));
-        //needs to be repaired
-        num_rows.setText(Integer.toString(all_data.size()));
+        update_info();
+        System.out.println(check);
+    }
+    /**
+     * This function updates the information in the text fields in the Input/Output panel in GUI.
+     */
+    private synchronized static void update_info(){
+    	num_rows.setText(Integer.toString(all_data.size()));
         Wifi_Scans w = new Wifi_Scans();
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
         num_of_access_points.setText(Integer.toString(w.getSize()));
+    }
+    
+    private void add_wigle_files_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_wigle_files_buttonActionPerformed
+       // TODO add your handling code here:
+        String path = path_wigle_files.getText();
+        toAddFolder(path, "button");
+        File file = new File(path);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String value = sdf.format(file.lastModified());
+        folder.put(path, value);
+        System.out.println(folder.toString());
+        //needs to be repaired
+        update_info();
     }//GEN-LAST:event_add_wigle_files_buttonActionPerformed
+    
+    private static void toAddFile(String path, String check){
+        ArrayList<Row> to_add = new ArrayList<Row>();
+        to_add = Csv.csv_to_file(path);
+        for (int i=0; i<to_add.size(); i++)
+            all_data.add(to_add.get(i));
+        update_info();
+        System.out.println(check);
+    }
+    
     /**
      * This function defines the actions that are made once the user presses the "Add" button by "Enter whole path of unified CSV file:"
      * in the Input/Output panel in the GUI. The file in the path is passed to an ArrayList of Row objects, then added to all_data.
@@ -999,10 +1026,15 @@ public class geo_wifi extends javax.swing.JFrame {
     private void add_csv_file_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_csv_file_buttonActionPerformed
         // TODO add your handling code here:
         String path = path_csv_file.getText();
-        ArrayList<Row> to_add = new ArrayList<Row>();
-        to_add = Csv.csv_to_file(path);
-        for (int i=0; i<to_add.size(); i++)
-            all_data.add(to_add.get(i));
+       
+        toAddFile(path, "button");
+        
+        File file = new File(path);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String value = sdf.format(file.lastModified());
+        System.out.println(path+"!!!!!!\n");
+        files.put(path, value);
+        System.out.println(files.toString());
         num_rows.setText(Integer.toString(all_data.size()));
         Wifi_Scans w = new Wifi_Scans();
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
@@ -1138,13 +1170,25 @@ public class geo_wifi extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+           public void run() {
                 new geo_wifi().setVisible(true);
             }
         });
+        Thread folder_thread = new FolderThread();
+        folder_thread.start();
+        Thread files_thread = new FilesThread();
+        files_thread.start();
+        //--------------------------------------------------------------------------------------------------------------
+      
     }
-
+    
+    
+    
+  //Global HashMap declarations for our threads.
+    private static Map<String,String> folder = new HashMap<>();
+    private static Map<String,String> files = new HashMap<>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Algorithm;
     private javax.swing.JFormattedTextField End_Time_filter;
@@ -1220,8 +1264,8 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField mac2;
     private javax.swing.JFormattedTextField mac3;
     private javax.swing.JFormattedTextField mac_Algo1;
-    private javax.swing.JTextField num_of_access_points;
-    private javax.swing.JTextField num_rows;
+    private static javax.swing.JTextField num_of_access_points;
+    private static javax.swing.JTextField num_rows;
     private javax.swing.JTextField path_csv_file;
     private javax.swing.JTextField path_wigle_files;
     private javax.swing.JFormattedTextField radius_units;
@@ -1232,4 +1276,51 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField signal2;
     private javax.swing.JFormattedTextField signal3;
     // End of variables declaration//GEN-END:variables
+    private static class FolderThread extends Thread{
+    	//constructor
+    	public FolderThread(){
+    	}
+    	@Override
+    	public void run(){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    		while (true){
+    			for (Map.Entry<String, String> pair : folder.entrySet()) {
+    				File file = new File(pair.getKey());
+    				if (!(file.exists())){
+    					folder.remove(pair.getKey());
+    				}
+    				else{
+    					if (!(sdf.format(file.lastModified()).equals(pair.getValue()))){
+    						toAddFolder(pair.getKey(), "thread");
+    						folder.replace(pair.getKey(), sdf.format(file.lastModified()));
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    private static class FilesThread extends Thread{
+    	//constructor
+    	public FilesThread(){
+    	}
+    	@Override
+    	public void run(){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    		while (true){
+    			for (Map.Entry<String, String> pair : files.entrySet()) {
+    				File file = new File(pair.getKey());
+    				if (!(file.exists())){
+    					files.remove(pair.getKey());
+    				}
+    				else{
+    					if (!(sdf.format(file.lastModified()).equals(pair.getValue()))){
+    						toAddFile(pair.getKey(), "thread");
+    						files.replace(pair.getKey(), sdf.format(file.lastModified()));
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
 }
