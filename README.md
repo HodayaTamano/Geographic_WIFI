@@ -2,7 +2,7 @@
 
 OOP course, Ariel University.
 
-Updated to: Stage#3, 12/1/18
+Updated to: Stage#3, 12/1/18 \n
 Please note that until now, readme had only theoretical explanations about this project, now it includes the instructions for running this project as well.
 
 RUNNING THE PROJECT:
