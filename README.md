@@ -1,70 +1,36 @@
 # Geographic_WIFI
 
-מבוא לתכנות מונחה עצמים
+OOP course, Ariel University.
 
-מטלה0+1
-14/12/2017
+Updated to: Stage#3, 12/1/18 
 
-הסבר על המערכת כולל חלקיה השונים:
+Please note that until now, readme had only theoretical explanations about this project, now it includes the instructions for running this project as well.
 
-	המערכת שכתבנו במטלה מקבלת תיקיה ובה קבצים מסוגים שונים, מאתרת בתיקיה את קבצי ה-csv השמורים בה (השתמשנו באפליקציית Wigle אשר אוספת את כל המידע הנדרש וניתן לייצא ממנה קבצים השומרים את המידע), ומעבירה את כל המידע מקבצי הcsv לקובץ csv  מאוחד אשר מסודר על פי השדות הרצויים במטלה. הקובץ הסופי במטלה מסודר עפ"י השדות הבאים:
+RUNNING THE PROJECT:
 
-Signal	Frequency	MAC	SSID	#Wifi	Alt	Lon	Lat	ID	Time
-עוצמת האות של הרשת	תדר	הכתובת הפיזית של הרשת	שם הרשת	מספר רשתות שנמצאו במיקום המדויק	גובה במטרים של המיקום הג"ג	קו רוחב - נתון מיקום הנמדד בהשוואה לקו	קו רוחב - נתון מיקום הנמדד בהשוואה לקו המשווה	שם המכשיר, בקובץ נקרא display name	זמן בדיוק של שניה
+To run the project as required in phase 3 please follow these instructions:
 
-*הנתונים Lat, Lon בעצם נותנים לנו את הנ"צ של הרשת.*
-ארבעת השדות האחרונים של הטבלה (SSID, MAC, Frequency, Signal) חוזרים על עצמם כמספר הכתוב בשדה #Wifi המפרט כמה רשתות wifi נמצאו במיקום המצוין לפי נתוני מיקום וזמן (Time, Lat, Lon, Alt), הקבועים לכל הרשתות שאותרו באותו מיקום וזמן.
-המעבר על המידע מהקבצים המקוריים בתיקיה בוצע במקביל להכנסת המידע לטבלה המאוחדת שהוגדרה כ-
-ArrayList מסוג Row שאותו הגדרנו במחלקה המתאימה לכך בפרויקט.
-Row הוגדר כאובייקט ששדותיו הם השדות הרלוונטים לשורה כפי שפורט לעיל בקובץ המאוחד.
-מחלקה נוספת שהוגדרה בפרויק הינה Wifi, שהוגדרה על מנת שנוכל ליצור במחלקת Row רשימה (ArrayList) של רשתות לפי פורמט אחוד (שדות האובייקט Wifi הינן: SSID, MAC, Frequency, Signal) כך שבהמשך נוכל להשוות בין אובייקטים מסוג רשת בקלות (רלוונטי לסעיפים 2 ו-3 במטלה).
-בנוסף לכך הוגדרה מחלקת Time שהיא אחראית על הכנסת הזמן שנלקח מהקבצים המקוריים והכנסתם לתבנית שתקל עלינו בבדיקות בהמשך (את ההשואות ביצענו בפורמט של Time ולא כהשוואה בין strings).
+	1) Clone the project.
+	
+	2) Change the path in the geo_wifi class to the right directory in your PC, after cloning it.
+	
+	3) Run geo_wifi class.
 
-בהמשך, בהתאם לסעיף 3 של המטלה, הקובץ המאוחד עפ"י הפורמט לעיל מועבר לקובץ kml במחלקה Kml בפרויקט. למחלקה זו יש שדה אחד שהינו ArrayList מסוג Wifi ששומר את הסיגנלים החזקים ביותר עבור כל wifi עפ"י המזהה החד-חד ערכי mac של הרשת. מחלקה זו קוראת מתוך הקובץ האחוד מסעיף 2 ומדפיסה לקובץ חדש בתצורת kml את כל הרשתות המופיעות בקובץ האחוד – פעם אחת עפ"י הסיגנל החזק ביותר שלה בעזרת הפונקציות remove_lows, should_delete_wifi, chose_max.
-בנוסף, פונקציה זו מבצעת פילטור על הרשתות שנמצאו לפי שם משתמש, זמן, ומיקום ע"י הפונקציות Filter by ID/Time/Location ופונקציית ההדפסה שלנו kml_file משתמשת בפונקציה placemarkWithChart ע"מ להדפיס את הנקודות בפורמט הרצוי באמצעות ספריית JAK של java.
-עפ"י דרישות מטלה 1, הוספנו לכל מחלקה בפרויקט מחלקת Test ע"מ לבדוק את תקינות הפונקציות שלנו. חשוב לציין שהפונקציות החשובות שנכתבו נבדקו, ולא פונקציות אוטומטיות.
+EXPLANATIONS ABOUT THE PROJECT:
 
-כלי התוכנה בפרויקט:
-	על מנת לבצע את הפרויקט השתמשנו ב-eclipse.
-חקרנו הרבה באינטרנט על מנת למצוא את הדרכים לבצע את הפעולות שרצינו בקוד.
-נעזרנו הרבה באתרים הבאים:
--	Stackoverflow
--	TutorialsPoint
--	Oracle
--	קוד להכנסת נקודות kml מקוד לדוג' באתר github
+Our project has 5 packages, each one is responsible for a different part of the project.
+(For a full depth explanation please read the "oop project" file in the project source files.)
 
-הסבר על הניסוי שביצענו:
--	תיעדנו נסיעות מאריאל לפתח תקווה (סיומת 809), נסיעה מפתח תקווה לראשון לציון (סיומת108), מיפינו את הרשתות באיזור הספריה בקמפוס (שני קבצים, סיומות: 606, 415). מפאת קוצר זמן לא הספקנו לאתר רשתות במקומות נוספים ברחבי הקמפוס.
+Wifi_Data holds all the objects we defined in this project to hold our data in different views, so that we will be able to work properly with the information we have and use the right amount of memory we need for each purpose.
+Filter package belongs to the third stage of our project, and it allows the GUI to make better filtering and apply more filters, now the data can be filtered not only by ID, Location and Time, but we can also apply these three at the same time or even apply a 'NOT' filter on them and combine with others.
+geo_wifi package is the package responsible for the GUI of our project. It contains only one class, and of course it uses the other packages in our project to execute the operations in the GUI.
+General package holds the main classes in the project, that are with us since stage 0 and 1 in this project. The classes are relevant to working with a Csv file, a KML file by the JAK library, and also contains the Time object we use in this project.
+Algorithms package holds all relevant calculations and functions for executing Algorithms 1&@ as required in stage 2 of this project.
 
-קישור לפרויקט ב-github:
-https://github.com/HodayaTamano/Geographic_WIFI
+Please note that this is very generic information about the project and the deeper explanations are in the "oop project" file as mentioined above.
 
-ספריית kml עבור java:
+NEXT PHASE:
 
-כאשר חיפשנו על ספריות  kml רלוונטיות לעבודה ב-java מצאנו את הספריות הבאות:
-- JAK
-- Gekmlib
-- Kmlframework
+-Connecting the project to a Database.
 
-קראנו אודות הספריות והגענו למסקנה שהספריה הטובה ביותר לעבוד עימה היא ספריית JAK משום שהיא הספריה החדשה ביותר לעבודה עם kml וכנראה שלה הפונקציות הכי רלוונטיות לעבודה.
-כמו כן, הספריות האחרות משתמשות כיום בחלק מהפונקציות של ספריית JAK ולכן היינו בכל מקרה צריכות להוריד את ספריית JAK ולכן בחרנו אותה כאופציה הכי טובה עבורנו.
-בנוסף לספריה זו היינו צריכות להתקין ספריה נוספת עם תוספים הכרחיים לעבודה עם JAK והיא: jaxb-impl-2.2.6 .
-
-
-
-
-רעיונות לשיפורים:
-1)	פונקציה ממיינת לרשימת wifi במחלקת Row אשר תמיין את הרשתות באותה שורה עפ"י הסיגנל כך שתמיד נוודא שאכן אנו מורידים את הרשת הכי פחות טובה במיקום זה.
-2)	הוספת בדיקה לרשימת ה-wifi בסעיף 2.
-3)	הכנסת תיעוד ל-throws ו-exceptions ב-Javadoc (לא ידענו שקיימים תיוגים לתיעוד של אלו).
-4)	להוריד את הפרויקט למחשב של שיר מ-github
-5)	להגדיר את מה שצריך להיות כ-private!
-6)	לשקול להכניס את נתוני המיקום כ-point3d – אין בדיקה כמו שאנחנו עשינו על נתוני מיקום
-7)	את הפילטור ניתן לעשות באמצעות compare
-
-שינויים שצריך לבצע לקראת ביצוע האלגוריתמים במטלה 2:
-•	מחלקה לpoint   ----- לא חובה
-•	חלוקה ל-packages והתקשורת ביניהן
-•	לעשות commitים מרובים במהלך העבודה
-•	רשימת מופעים לכל wifi – אופציה לשלוף. בעצם אפשר חתך של wifiים עם מיקום (עם נתוני הwifi כמובן)
-•	
+-Using Gradle build tool to manage the project better.
