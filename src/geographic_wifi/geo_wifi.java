@@ -6,14 +6,13 @@
 package geographic_wifi;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.io.*;
 import java.util.*;
 import Wifi_Data.*;
-import Tests.*;
 import General.*;
 import Algorithms.*;
 import Filter.*;
+
 
 /**
  *
@@ -125,6 +124,20 @@ public class geo_wifi extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        SQL = new javax.swing.JPanel();
+        jLabel_ip = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        ip_sql = new javax.swing.JFormattedTextField();
+        port_sql = new javax.swing.JFormattedTextField();
+        user_sql = new javax.swing.JTextField();
+        password_sql = new javax.swing.JTextField();
+        db_name = new javax.swing.JTextField();
+        table_name = new javax.swing.JTextField();
+        sql_execute = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Geographic_WIFI");
@@ -362,10 +375,10 @@ public class geo_wifi extends javax.swing.JFrame {
         });
 
         path_wigle_files.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 path_wigle_filesInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
 
@@ -815,6 +828,117 @@ public class geo_wifi extends javax.swing.JFrame {
 
         TabbedPanel.addTab("Filter", Filter);
 
+        jLabel_ip.setText("IP:");
+
+        jLabel14.setText("Port:");
+
+        jLabel22.setText("User:");
+
+        jLabel38.setText("Password:");
+
+        jLabel39.setText("DB Name:");
+
+        jLabel40.setText("Table Name:");
+
+        try {
+            ip_sql.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###.###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ip_sql.setText("005.029.193.052");
+
+        port_sql.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        port_sql.setText("3306");
+
+        user_sql.setText("oop1");
+
+        password_sql.setText("Lambda1();");
+        password_sql.setToolTipText("");
+
+        db_name.setText("oop_course_ariel");
+
+        table_name.setText("ex4_db");
+
+        sql_execute.setText("Execute");
+        sql_execute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sql_executeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SQLLayout = new javax.swing.GroupLayout(SQL);
+        SQL.setLayout(SQLLayout);
+        SQLLayout.setHorizontalGroup(
+            SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SQLLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SQLLayout.createSequentialGroup()
+                            .addComponent(jLabel38)
+                            .addGap(18, 18, 18)
+                            .addComponent(password_sql))
+                        .addGroup(SQLLayout.createSequentialGroup()
+                            .addComponent(jLabel40)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(table_name))
+                        .addGroup(SQLLayout.createSequentialGroup()
+                            .addComponent(jLabel39)
+                            .addGap(18, 18, 18)
+                            .addComponent(db_name)))
+                    .addGroup(SQLLayout.createSequentialGroup()
+                        .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_ip)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel22))
+                        .addGap(42, 42, 42)
+                        .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(port_sql, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(user_sql, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ip_sql, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(121, 121, 121)
+                .addComponent(sql_execute, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+        SQLLayout.setVerticalGroup(
+            SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SQLLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_ip)
+                    .addComponent(ip_sql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(port_sql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(user_sql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SQLLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(password_sql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(SQLLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(sql_execute)))
+                .addGap(32, 32, 32)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(db_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(SQLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(table_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jLabel_ip.getAccessibleContext().setAccessibleName("");
+
+        TabbedPanel.addTab("SQL", SQL);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1143,6 +1267,21 @@ public class geo_wifi extends javax.swing.JFrame {
     }//GEN-LAST:event_filter_execute_buttonActionPerformed
 
     /**
+     * This function connects the GUI in the "SQL" panel to the relevant class in our project: SQL and executes reading from the wanted table inserted by the user.
+     * @param evt
+     */
+    private void sql_executeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sql_executeActionPerformed
+        // TODO add your handling code here:
+    	String[] args = {ip_sql.getText(), port_sql.getText(), user_sql.getText(), password_sql.getText(), db_name.getText(), table_name.getText()}; 
+    	ArrayList<Row> tableFromDB = new ArrayList<Row>();
+    	tableFromDB = SQL_Data.read_db(args);
+    	for (int i=0; i<tableFromDB.size(); i++){
+    		all_data.add(tableFromDB.get(i));
+    	}
+    	Csv.pass_to_file(all_data, all_dataPath);
+    }//GEN-LAST:event_sql_executeActionPerformed
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -1205,6 +1344,7 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Location_Group;
     private javax.swing.JRadioButton Location_Not;
     private javax.swing.JRadioButton Location_NotUse;
+    private javax.swing.JPanel SQL;
     private javax.swing.JFormattedTextField Start_time_filter;
     private javax.swing.JTabbedPane TabbedPanel;
     private javax.swing.JRadioButton Time_And;
@@ -1215,16 +1355,19 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JButton add_wigle_files_button;
     private javax.swing.JTextField alt_output_field;
     private javax.swing.JTextField csv_file_path_save;
+    private javax.swing.JTextField db_name;
     private javax.swing.JButton empty_file_button;
     private javax.swing.JButton filter_execute_button;
     private javax.swing.JTextField filter_info;
     private javax.swing.JFormattedTextField id_filter;
+    private javax.swing.JFormattedTextField ip_sql;
     private javax.swing.JLabel jBkjdkh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1233,6 +1376,7 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1249,11 +1393,15 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel_ip;
     private javax.swing.JTextField kml_path_file_save;
     private javax.swing.JTextField lat_output_field;
     private javax.swing.JFormattedTextField location_alt_filter;
@@ -1266,8 +1414,10 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField mac_Algo1;
     private static javax.swing.JTextField num_of_access_points;
     private static javax.swing.JTextField num_rows;
+    private javax.swing.JTextField password_sql;
     private javax.swing.JTextField path_csv_file;
     private javax.swing.JTextField path_wigle_files;
+    private javax.swing.JFormattedTextField port_sql;
     private javax.swing.JFormattedTextField radius_units;
     private javax.swing.JTextField row_from_gui;
     private javax.swing.JButton save_as_kml_button;
@@ -1275,6 +1425,9 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField signal1;
     private javax.swing.JFormattedTextField signal2;
     private javax.swing.JFormattedTextField signal3;
+    private javax.swing.JButton sql_execute;
+    private javax.swing.JTextField table_name;
+    private javax.swing.JTextField user_sql;
     // End of variables declaration//GEN-END:variables
     private static class FolderThread extends Thread{
     	//constructor
