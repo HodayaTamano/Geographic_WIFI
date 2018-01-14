@@ -19,7 +19,7 @@ import Filter.*;
  * @author HodayaTamano&ShirBentabou
  */
 public class geo_wifi extends javax.swing.JFrame {
-    final static String all_dataPath = "C:/Users/Leandrog/git/GW2/Input Files/all_data.csv";
+    final static String all_dataPath = "Input Files/all_data.csv";
     static ArrayList<Row> all_data = new ArrayList<Row>();
     /**
      * Creates new form geo_wifi
@@ -1128,7 +1128,7 @@ public class geo_wifi extends javax.swing.JFrame {
         File file = new File(path);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String value = sdf.format(file.lastModified());
-        folder.put(path, value);
+        folder.putIfAbsent(path, value);
         System.out.println(folder.toString());
         //needs to be repaired
         update_info();
@@ -1157,7 +1157,7 @@ public class geo_wifi extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String value = sdf.format(file.lastModified());
         System.out.println(path+"!!!!!!\n");
-        files.put(path, value);
+        files.putIfAbsent(path, value);
         System.out.println(files.toString());
         num_rows.setText(Integer.toString(all_data.size()));
         Wifi_Scans w = new Wifi_Scans();
@@ -1278,7 +1278,11 @@ public class geo_wifi extends javax.swing.JFrame {
     	for (int i=0; i<tableFromDB.size(); i++){
     		all_data.add(tableFromDB.get(i));
     	}
-    	Csv.pass_to_file(all_data, all_dataPath);
+    	String request = ip_sql.getText()+","+port_sql.getText()+","+user_sql.getText()+","+password_sql.getText()+","+db_name.getText()+","+table_name.getText();
+    	table.putIfAbsent(request, SQL_Data.TimeUPDATE(request.split(",")));
+    	System.out.println(table.toString());
+    	Csv.pass_to_file(all_data,all_dataPath);
+    	
     }//GEN-LAST:event_sql_executeActionPerformed
 
     /**
@@ -1319,6 +1323,9 @@ public class geo_wifi extends javax.swing.JFrame {
         folder_thread.start();
         Thread files_thread = new FilesThread();
         files_thread.start();
+        table.put("005.029.193.052,3306,oop1,Lambda1();,oop_course_ariel,ex4_db", "f");
+        Thread table_thread = new TableThread();
+        table_thread.start();
         //--------------------------------------------------------------------------------------------------------------
       
     }
@@ -1328,6 +1335,7 @@ public class geo_wifi extends javax.swing.JFrame {
   //Global HashMap declarations for our threads.
     private static Map<String,String> folder = new HashMap<>();
     private static Map<String,String> files = new HashMap<>();
+    private static Map<String,String> table = new HashMap<>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Algorithm;
     private javax.swing.JFormattedTextField End_Time_filter;
@@ -1428,6 +1436,33 @@ public class geo_wifi extends javax.swing.JFrame {
     private javax.swing.JButton sql_execute;
     private javax.swing.JTextField table_name;
     private javax.swing.JTextField user_sql;
+    
+    
+    private static class TableThread extends Thread{
+    	//constructor
+    	public TableThread(){
+    	}
+    	@Override
+    	public void run(){
+    		while (true){
+    			for (Map.Entry<String, String> pair : table.entrySet()) {
+    				if (!(SQL_Data.TimeUPDATE(pair.getKey().split(","))).equals(pair.getValue())){
+    					ArrayList<Row> tableFromDB = new ArrayList<Row>();
+    			    	tableFromDB = SQL_Data.read_db(pair.getKey().split(","));
+    			    	for (int i=0; i<tableFromDB.size(); i++){
+    			    		all_data.add(tableFromDB.get(i));
+    			    	}
+    			    	Csv.pass_to_file(all_data,all_dataPath);
+    			    	table.replace(pair.getKey(), SQL_Data.TimeUPDATE(pair.getKey().split(",")));	
+    				}
+    			}
+    			
+    		}
+    	}
+
+
+}
+    
     // End of variables declaration//GEN-END:variables
     private static class FolderThread extends Thread{
     	//constructor
