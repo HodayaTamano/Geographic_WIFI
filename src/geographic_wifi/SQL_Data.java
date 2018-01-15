@@ -13,14 +13,25 @@ import java.util.*;
 import Wifi_Data.*;
 import java.sql.Statement;
 
+/**
+ * This class is responsible for the connection to the course DB, and updating the project table accordingly.
+ * @author HodayaTamano&ShirBentabou
+ */
 public class SQL_Data {
-
+	  //These variables represent the information we need to connect to our Database.
 	  private static String _ip;
 	  private static String _url;
 	  private static String _user;
 	  private static String _password;
 	  private static Connection _con = null;
 	      
+	    /**
+	     * This function receives all the relevant arguments needed to connect to the DB and organizes them as a connection request
+	     * and sends to extract_table function to read the relevant table from the DB into an ArrayList of Row objects, returns this
+	     * ArrayList.
+	     * @param args IP,port,user,password,database,table
+	     * @return contents of table
+	     */
 	    public static ArrayList<Row> read_db(String[] args) {
 	    	ArrayList<Row> db = new ArrayList<Row>();
 	    	_ip=args[0];
@@ -31,7 +42,12 @@ public class SQL_Data {
 	    	return db;
 	    }
 
-	    
+	    /**
+	     * This function extracts all the rows from the table in the DB, and inserts the to an ArrayList of Row objects.
+	     * Returns this ArrayList.
+	     * @param args IP,port,user,password,database,table
+	     * @return contents of table
+	     */
 	    public static ArrayList<Row> extract_table(String[] args) {
 	    	ArrayList<Row> table = new ArrayList<Row>();
 	        Statement st = null;
@@ -85,7 +101,7 @@ public class SQL_Data {
 	    
 	    
 	    /**
-	     * the function return time of last modification
+	     * This function returns the last modification time of table, by connecting to it.
 	     * @param args  IP,port,user,password,database,table
 	     * @return time of last modification
 	     */

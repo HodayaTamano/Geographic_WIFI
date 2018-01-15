@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,9 +14,11 @@ import General.*;
 import Algorithms.*;
 import Filter.*;
 
-
 /**
- *
+ * * This class is responsible for the actions that can be executed in the GUI of this project. It uses all the other packages and
+ * classes in this project to execute the actions with the existing code written in this project.
+ * We can relate to this class as the 'wrapper' of the project, allowing all actions to be made by the GUI, although it also includes 
+ * all the definitions of the GUI.
  * @author HodayaTamano&ShirBentabou
  */
 public class geo_wifi extends javax.swing.JFrame {
@@ -991,7 +994,12 @@ public class geo_wifi extends javax.swing.JFrame {
     private void location_alt_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_location_alt_filterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_location_alt_filterActionPerformed
-
+	/**
+     * This function defines the actions to be made when the user presses the"Execute Algo2 on Macs" button in the Algorithms panel in GUI.
+     * Once the user hits the button, all the data from the relevant text fields are inserted to variables and to a temporary Row object,
+     * and the location for it is calculated in Algorithm 2.
+     * @param evt
+     */
     private void Execute_Algo2_MacsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Execute_Algo2_MacsActionPerformed
         // TODO add your handling code here:
             	double loc [] = new double [3];
@@ -1045,7 +1053,7 @@ public class geo_wifi extends javax.swing.JFrame {
     private void path_wigle_filesInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_path_wigle_filesInputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_path_wigle_filesInputMethodTextChanged
-  /**
+ 	 /**
      * This function defines the actions to be made when the user presses the"Execute Algo2 on Row" button in the Algorithms panel.
      * Once the user hits the button, the text from the text field under "enter a row-to calculate location", the text is then 
      * turned into a Row object and the location for it is calculated in Algorithm 2.
@@ -1121,6 +1129,10 @@ public class geo_wifi extends javax.swing.JFrame {
         num_of_access_points.setText(Integer.toString(w.getSize()));
     }
     
+     /**
+     * This function obtains the functionality once the add button for wigle files has been pressed in the GUI.
+	 * Once pressed, the files are processed into one unified csv formatted file and added to all_data table.
+     */
     private void add_wigle_files_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_wigle_files_buttonActionPerformed
        // TODO add your handling code here:
         String path = path_wigle_files.getText();
@@ -1134,6 +1146,9 @@ public class geo_wifi extends javax.swing.JFrame {
         update_info();
     }//GEN-LAST:event_add_wigle_files_buttonActionPerformed
     
+    /**
+     * This function adds a csv unified formatted file from a path to our general table of this GUI and project, all_data.
+     */
     private static void toAddFile(String path, String check){
         ArrayList<Row> to_add = new ArrayList<Row>();
         to_add = Csv.csv_to_file(path);
@@ -1164,6 +1179,7 @@ public class geo_wifi extends javax.swing.JFrame {
         w=Algorithm1.findMacScans(all_data); //this function locates all access points, we use it here to know how many there are
         num_of_access_points.setText(Integer.toString(w.getSize()));
     }//GEN-LAST:event_add_csv_file_buttonActionPerformed
+    
     /**
      * This function defines what is made once the "Empty all_data.csv" button in the Input/Output panel is pressed.
      * All rows from all_data are then erased, and the text fields with info about it are updated.
@@ -1176,6 +1192,7 @@ public class geo_wifi extends javax.swing.JFrame {
         num_of_access_points.setText("0");
         filter_info.setText("None");
     }//GEN-LAST:event_empty_file_buttonActionPerformed
+    
     /**
      * This function defines the functionality of the "Save as Unified CSV" button in the Input/Output panel in the GUI.
      * Once pressed, all_data table is sent to csv.pass_to_table function with the path from the text field under the button and written to the path given by the user.
@@ -1189,6 +1206,7 @@ public class geo_wifi extends javax.swing.JFrame {
             Csv.pass_to_file(all_data, path_output);
         }
     }//GEN-LAST:event_save_as_unified_buttonActionPerformed
+    
     /**
      * This function defines the functionality of the "Save as KML file" button in the Input/Output panel in the GUI.
      * Once pressed, all_data table is sent to kml_by_lib.pass_to_kml function with the path from the text field under the button and written to the path given by the user.
@@ -1209,6 +1227,11 @@ public class geo_wifi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Time_NotUseActionPerformed
 
+	 /**
+     * This function is responsible for the Filter panel of our GUI. Once the user presses execute, it gathers all information of all filters 
+asked to be executed and executes them using The Filter package in this project.
+     * @param evt
+     */
     private void filter_execute_buttonActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException {//GEN-FIRST:event_filter_execute_buttonActionPerformed
         // TODO add your handling code here:
     	ArrayList<Row> all_dataCopy = new ArrayList<Row>();
@@ -1267,7 +1290,7 @@ public class geo_wifi extends javax.swing.JFrame {
     }//GEN-LAST:event_filter_execute_buttonActionPerformed
 
     /**
-     * This function connects the GUI in the "SQL" panel to the relevant class in our project: SQL and executes reading from the wanted table inserted by the user.
+     * This function connects the GUI in the "SQL" panel to the relevant class in our project, SQL, and executes reading from the wanted table inserted by the user.
      * @param evt
      */
     private void sql_executeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sql_executeActionPerformed
@@ -1286,6 +1309,8 @@ public class geo_wifi extends javax.swing.JFrame {
     }//GEN-LAST:event_sql_executeActionPerformed
 
     /**
+     * Main of our GUI - Contains our threads, thread classes, and all relevant variables for GUI.
+Note that there are three threads - one for folders updated, one for files that have been updated and the third was added for the DB table updating.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
