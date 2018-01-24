@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests.KML_by_libTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-24T19:56:19" hostname="DESKTOP-KE215AE" time="0.003">
+  <properties/>
+  <testcase name="testRemove_lows" classname="Tests.KML_by_libTest" time="0.0"/>
+  <testcase name="testFilter_by_ID" classname="Tests.KML_by_libTest" time="0.0"/>
+  <testcase name="testKml_file" classname="Tests.KML_by_libTest" time="0.001"/>
+  <testcase name="testFilter_by_Location" classname="Tests.KML_by_libTest" time="0.0"/>
+  <testcase name="testPass_to_kml" classname="Tests.KML_by_libTest" time="0.0"/>
+  <testcase name="testFilter_by_Time" classname="Tests.KML_by_libTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
