@@ -2,20 +2,25 @@
 
 OOP course, Ariel University.
   
- -Updated Stage#4: 20/1/18 \n
- +Updated Stage#3: 12/1/18 
+ -Updated Stage#4: 20/1/18
+ 
+ -Updated Stage#3: 12/1/18 
  +
   Please note that until now, readme had only theoretical explanations about this project, now it includes the instructions for running this project.
   Theoretical explanations are in oop project doc file.
   
   RUNNING THE PROJECT:
  +
+ 
   To run the project as required in phase 4 please follow these instructions:
  +
+ 
   	1) Clone the project.
  +	
+ 
   	2) Change the path in therelevant classes to the right directory in your PC, after cloning it. (you can see where throughout the code!)
  +	
+ 
   	3) Run build file to create a jar for this project.
   
   EXPLANATIONS ABOUT THE PROJECT:
@@ -28,7 +33,7 @@ OOP course, Ariel University.
   IN PHASE 4:
  +
   - Project was connected to a Database.
- +
+
   - Now Gradle build tool is used to manage the project.
   
   
