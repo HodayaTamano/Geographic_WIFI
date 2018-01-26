@@ -23,14 +23,13 @@ OOP course, Ariel University.
   Our project has 5 packages, each one is responsible for a different part of the project.
   (For a full depth explanation please read the "oop project" file in the project source files.)
   
- @@ -24,5 +30,7 @@ Algorithms package holds all relevant calculations and functions for executing A
-  Please note that this is very generic information about the project and the deeper explanations are in the "oop project" file as mentioined above.
+  Please note that this is very generic information about how to run the project and the deeper explanations are in the "oop project" file as mentioined above.
   
   IN PHASE 4:
  +
-  - Prokect was connected to a Database.
+  - Project was connected to a Database.
  +
-  -Now Gradle build tool is used to manage the project.
+  - Now Gradle build tool is used to manage the project.
   
   
   PLEASE MIND THE ISSUES OF OUR PROJECT!!!
